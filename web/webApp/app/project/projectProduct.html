@@ -1,0 +1,44 @@
+<!--
+	作者：1970496911@qq.com
+	时间：2017-10-04
+	描述：项目产品
+-->
+<div data-bind="projectProductHandler"  style="background: #fff;">
+	<div class="form-group" style="display: inline-block; width: 100%;">
+		<div class="col-sm-12 mt-10 mb-10">
+			<table class="table table-bordered table-striped table-hover mb-10">
+				<thead>
+					<tr>
+						<th class="text-center">cad文件</th>
+						<th class="text-center">工时</th>
+						<th class="text-center">责任人</th>
+						<th class="text-center">件数</th>
+						
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: arrList" class="addTBody">
+					<tr class="text-center">
+						<td class="hide">
+							<input type="text" data-bind="value: isSelect" value="0" style="width: 100%;"/>
+						</td>
+						<td>
+							<input type="text" data-bind="value: fileName" style="width: 100%;"/>
+						</td>
+						<td>
+							<input type="text" data-bind="value: workTime" style="width: 100%;"/>
+						</td>
+						<td>
+							<input type="text" data-bind="value: workUser" style="width: 100%;"/>
+						</td>
+						<td>
+							<input type="text" data-bind="value: workCount" style="width: 100%;"/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-primary" data-bind="click:$root.addProduct">添加</button>
+			<button class="btn btn-primary" data-bind="click:$root.save">保存</button>
+			<button class="btn btn-primary" data-bind="click:$root.exportCVS">导出</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+<div data-bind="pigeonholeListHandler" class="col-sm-12">
+	<div class="form-group">
+		<label class="queryCondition control-label">项目名称：</label>
+		<div class="col-sm-3">
+			<input type="text" placeholder="请输入项目名称" class="form-control" data-bind="value:projectName"/>
+		</div>
+
+		<!--<label class="queryCondition  control-label">类型：</label>
+		<div class="col-sm-3">
+			<select class="form-control valtype" data-bind="options: typeArr, value:typeStr, optionsValue: 'textStr' , optionsText: 'valueStr',  optionsCaption: '请选择'">
+			</select>
+		</div>-->
+		<button class="btn btn-success" data-bind="click:loadProject"> 搜索</button>
+	</div>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th class="text-center">序号</th>
+				<th class="text-center">项目流水号</th>
+				<th class="text-center">类型</th>
+				<th class="text-center">项目名</th>
+				<th class="text-center">状态</th>
+				<th class="text-center">用户名称</th>
+				<th class="text-center">产品型号</th>
+				<th class="text-center">操作</th>
+				
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: arrList">
+			<tr class="text-center">
+				<td data-bind="text: $index() + 1"></td>
+				<td data-bind="text: serialNumber"></td>
+				<td>
+					<span data-bind="if: type == 'H001'">草稿</span>
+					<span data-bind="if: type == 'H002'">设计</span>
+					<span data-bind="if: type == 'H003'">审批</span>
+					<span data-bind="if: type == 'H004'">复审</span>
+					<span data-bind="if: type == 'H005'">生产</span>
+					<span data-bind="if: type == 'H006'">公告</span>
+					<span data-bind="if: type == 'H007'">归档</span>
+				</td>
+				<td data-bind="text: projectName"></td>
+				<td>
+					<span data-bind="if: status == 'Y'">启用</span>
+					<span data-bind="if: status == 'N'">停用</span>
+				</td>
+				<td data-bind="text: customerName"></td>
+				<td data-bind="text: productModel"></td>
+				<td>
+					<button class="btn btn-primary mr-10" type="button">查看</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="form-group ">
+		<ul class="pagination"></ul>
+	</div>
+</div>
+<div class="fr" data-bind="if:isShowPage">
+	<ul class="pagination">
+	    <li><a href="#" aria-label="Previous" data-bind = "click:function(){ $root.upPage($root.minPageNum()); }"><span aria-hidden="true">&laquo;</span></a></li>
+	    <!-- ko foreach: { data: pagesArray, as: 'page' } -->
+	    	<li data-bind="click:function(){ $root.gotoPage(page); }, css:{ active: page == $root.currentPage() } "><a href="#" data-bind="text:page"></a></li>
+	    <!-- /ko -->
+	    <li><a href="#" data-bind = "click:function(){ $root.nextPage($root.maxPageNum()); }">&raquo;</a></li>
+	</ul>	
+</div>

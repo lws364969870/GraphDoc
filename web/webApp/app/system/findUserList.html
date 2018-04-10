@@ -1,0 +1,58 @@
+<div data-bind="findUserListHandler" class="col-sm-12">
+	<nav class="navigation">系统配置<span class="c-gray en">&gt;</span><span>用户管理</span></nav>
+	<div class="form-group">
+		<label class="queryCondition control-label">用户名称：</label>
+		<div class="col-sm-3">
+			<input type="text" placeholder="请输入用户名称" class="form-control" data-bind="value:userName"/>
+		</div>
+		<button class="btn btn-success" data-bind="click:$root.loadUser"> 搜索</button>
+	</div>
+	
+	<div class="col-sm-12 cl pd-5 bg-1 bk-gray mb-10" >
+		<button  class="btn btn-primary" data-bind="click:addUser">添加</button>
+	</div>
+	<table class="table table-bordered table-striped table-hover">
+		<thead>
+			<tr>
+				<th class="text-center">序号</th>
+				<th class="text-center">用户名称</th>
+				<th class="text-center">登录名</th>
+				<th class="text-center">状态</th>
+				<th class="text-center">角色</th>
+				<th class="text-center">部门</th>
+				<th class="text-center">操作</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: arrList">
+			<tr class="text-center">
+				<td data-bind="text: $index() + 1"></td>
+				<td data-bind="text: userName"></td>
+				<td data-bind="text: loginName"></td>
+				<td>
+					<div data-bind="if:status == 'Y'">
+						启用
+					</div>
+					<div data-bind="if:status == 'N'">
+						停用
+					</div>
+				</td>
+				<td data-bind="text: role"></td>
+				<td data-bind="text: department"></td>
+				<td>
+					<button class="btn btn-primary mr-10 btn-sm" type="button" data-bind="click:$root.updateUser">编辑</button>
+					<button class="btn btn-primary mr-10 btn-sm" type="button" data-bind="click:$root.resetPwd">重置密码</button>
+					<button class="btn btn-primary btn-sm" type="button" data-bind="click:$root.delUser">删除</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="fr" data-bind="if:isShowPage">
+	<ul class="pagination">
+	    <li><a href="#" aria-label="Previous" data-bind = "click:function(){ $root.upPage($root.minPageNum()); }"><span aria-hidden="true">&laquo;</span></a></li>
+	    <!-- ko foreach: { data: pagesArray, as: 'page' } -->
+	    	<li data-bind="click:function(){ $root.gotoPage(page); }, css:{ active: page == $root.currentPage() } "><a href="#" data-bind="text:page"></a></li>
+	    <!-- /ko -->
+	    <li><a href="#" data-bind = "click:function(){ $root.nextPage($root.maxPageNum()); }">&raquo;</a></li>
+	</ul>	
+</div>

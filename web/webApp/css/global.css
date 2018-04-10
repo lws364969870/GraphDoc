@@ -1,0 +1,64 @@
+body{ background-color: #eff4f8; margin: 0px;  }
+.desktop-nav{ height: 70px;line-height: 65px;  }
+.desktop-body{ width: 100%;  }
+.desktop-menu{ width: 180px; position: fixed; top: 0px; bottom: 0px; left: 10px; border: 0px solid #FF0000; margin-top: 70px; }
+.desktop-content{ background-color: #f9f9f9;  margin-top: 70px; top: 0px; bottom: -15px; right: 5px; left: 200px; position: fixed; overflow: auto; }
+.web{ border: 1px solid #c1d5f0; }
+.head-left{ height: 100%; width: 250px;  float:left; padding-left: 10px; font-size: 28px; font-weight: bold;min-width: 300px; }
+.head-right{ width: 600px; float:right; text-align: right; padding:10px; }
+.menu-right{ float:right; }
+
+.bg-1 {background-color: #f5fafe;}
+.bk-gray {border: solid 1px #eee;}
+.pd-5 {padding: 5px;}
+.margin-8{margin: 8px;}
+.mb-10 {margin-bottom: 10px;}
+.mt-10{margin-top: 10px;}
+.mr-10{margin-right: 10px;}
+.hide{display: none;}
+.fr{float: right;}
+.currentBody{
+	background-color: #269abc;
+    color: #fff;
+}
+
+.roleTable>tbody>tr:hover{
+	background-color: #269abc;
+    color: #fff;
+}
+
+.form-horizontal .control-label {
+	min-width: 60px;
+}
+
+.hide{display: none;}
+.radio{ display: inline-block;}
+.red{color:red; }
+
+#browser .red{color: #fff; background-color: #428bca !important;background-position-x: 0px !important;background-position-y: 2px !important;}
+@media (min-width: 768px){
+	#projectListHandler .col-sm-1{
+		width: 13%;
+	}
+	#projectListHandler .col-sm-3{
+	    width: 20.3%;
+	}
+	#projectListHandler .col-sm-11{
+	    width: 87%;
+	}
+}
+
+.queryCondition{
+	float: left;
+	line-height: 34px;
+	padding-right: 0;
+}
+
+.clear{clear: both;}
+
+.table{background-color: #fff; cursor: pointer;}
+
+/**
+ * 菜单栏
+ */
+a.list-group-item:hover, a.list-group-item:focus{background-color: #5bc0de;color: #fff;}

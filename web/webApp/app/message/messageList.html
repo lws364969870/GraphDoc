@@ -1,0 +1,52 @@
+<div data-bind="messageListHandler">
+	<style type="text/css">
+		.textOverflow{
+			    width: 420px;
+			    display: inline-block;
+			    /* display: -webkit-box; */
+			    /* -webkit-box-orient: vertical; */
+			    /* -webkit-line-clamp: 1; */
+			    /* overflow: hidden; */
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+		}
+	</style>
+	<table class="table table-bordered table-striped table-hover">
+		<thead>
+			<tr>
+				<th class="text-center" style="width: 10%;">序号</th>
+				<th class="text-center" style="width: 20%;">项目名称</th>
+				<th class="text-center" style="width: 20%;">消息内容</th>
+				<th class="text-center" style="width: 10%;">发送人名称</th>
+				<th class="text-center" style="width: 10%;">读取状态</th>
+				<th class="text-center" style="width: 10%;">发送时间</th>
+				<th class="text-center" style="width: 20%;">操作</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: arrList">
+			<tr class="text-center" data-bind = "attr: { 'title': content }">
+				<td data-bind="html:$index()+1"></td>
+				<td data-bind="html:project"></td>
+				<td >
+					<a class="textOverflow" href="javascript:;"  data-bind="html:content,click:$root.queryProject"></a>
+				</td>
+				<td data-bind="html:sendUser"></td>
+				<td data-bind="html:isRead"></td>
+				<td data-bind="html:sendDate"></td>
+				<td>
+					<!--<button class="btn btn-primary">查看</button>-->
+					<button class="btn btn-primary" data-bind="click:$root.readMenthod">已读</button>
+					<button class="btn btn-primary" data-bind="click:$root.delMenthod">删除</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<style type="text/css">
+		.table td{
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;
+		}
+	</style>
+</div>

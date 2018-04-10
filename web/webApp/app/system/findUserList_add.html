@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="lib/layer/skin/default/layer.css" />
+<div data-bind="findUserListAddHandler">
+	<nav class="navigation">系统配置<span class="c-gray en">&gt;</span><span>用户管理</span></nav>
+  <form class="form-horizontal" action="">
+    <fieldset>
+      <div id="legend" class="">
+        <legend class="" data-bind="text:title"></legend>
+      </div>
+	    <div class="form-group">
+      		<label class="col-sm-1 control-label"><span class="red">*</span>用户名：</label>
+      		<div class="col-sm-11">
+        		<input type="text" placeholder="请输入用户名" class="form-control txtValidation" data-type="txtStr" data-value="请输入用户名" data-bind="value:userName"/>
+       	 	</div>
+	    </div>
+	    
+	    <div class="form-group">
+	  		<label class="col-sm-1 control-label"><span class="red">*</span>登录名：</label>
+	  		<div class="col-sm-11">
+	    		<input type="text" placeholder="请输入登录名" class="form-control txtValidation" data-type="txtStr" data-value="请输入登录名" data-bind="value:loginName"/> 
+	    	</div>
+	    </div>
+	    <div data-bind ='if:showPassWord'>
+		    <div class="form-group" >
+		  		<label class="col-sm-1 control-label"><span class="red">*</span>密码：</label>
+		  		<div class="col-sm-11">
+		    		<input type="password" placeholder="请输入密码" class="form-control txtValidation password" data-type="pwd" data-value="请输入密码" data-bind="value:passWord"/>
+		    	</div>
+		    </div>
+		    
+		    <div class="form-group">
+		  		<label class="col-sm-1 control-label"><span class="red">*</span>确认密码：</label>
+		  		<div class="col-sm-11">
+		    		<input type="password" placeholder="请输入确认密码" class="form-control txtValidation" data-type="pwd2" data-value="请输入确认密码" data-bind="value:passWord2"/>
+		    	</div>
+		    </div>
+	    </div>
+	    <div class="form-group">
+				<label class="col-sm-1  control-label"><span class="red">*</span>状态：</label>
+				<div class="col-sm-11">
+		        <label class="radio inline"><input type="radio" value="Y" name="status" data-bind="checked:status">启用</label>
+		        <label class="radio inline"><input type="radio" value="N" name="status" data-bind="checked:status">停用</label>
+	  		</div>
+	    </div>
+	    
+	    <div class="form-group">
+	  		<label class="col-sm-1  control-label"><span class="red">*</span>角色：</label>
+	  		<div class="col-sm-11">
+	    		<select class="form-control valtype txtValidation roleArr" data-value="请选择角色" data-type="selectStr" data-bind="options: roleArr, value:roleStr, optionsText: 'name', optionsValue: 'id',  optionsCaption: '请选择'">
+		        </select>
+	    	</div>
+	    </div>
+	    
+	    <div class="form-group">
+	  		<label class="col-sm-1  control-label"><span class="red">*</span>部门：</label>
+	  		<div class="col-sm-11">
+	      		<select class="form-control valtype txtValidation departmentArr" data-value="请选择部门" data-type="selectStr" data-bind="options: departmentArr, value:departmentStr , optionsText: 'name', optionsValue: 'id', optionsCaption: '请选择'">
+		        </select>
+	  		</div>
+	    </div>
+    </fieldset>
+  </form>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-11" style="padding-left: 0;">
+  	<button class="btn btn-primary mr-10" data-bind="click:submitUser">提交</button>
+    <button class="btn btn-primary" data-bind="click:retrunFindUserList">返回</button>
+  </div>
+</div>

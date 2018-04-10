@@ -1,0 +1,29 @@
+<div data-bind="departmentListAddHandler">
+	<nav class="navigation">系统配置<span class="c-gray en">&gt;</span><span>部门管理</span></nav>
+  <form class="form-horizontal" action="">
+    <fieldset>
+      <div id="legend" class="">
+        <legend class="" data-bind="text:title"></legend>
+      </div>
+	    <div class="form-group">
+      		<label class="col-sm-1 control-label"><span class="red">*</span>部门名称：</label>
+      		<div class="col-sm-11">
+        		<input type="text" placeholder="请输入部门名称" class="form-control txtValidation" data-type="txtStr" data-value="请输入部门名称" data-bind="value:name"/>
+       	 	</div>
+	    </div>
+	    
+	    <div class="form-group">
+				<label class="col-sm-1  control-label"><span class="red">*</span>状态：</label>
+				<div class="col-sm-11">
+		        <label class="radio inline"><input type="radio" value="Y" name="status" data-bind="checked:status">启用</label>
+		        <label class="radio inline"><input type="radio" value="N" name="status" data-bind="checked:status">停用</label>
+	  		</div>
+	    </div>
+    </fieldset>
+  </form>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-11" style="padding-left: 0;">
+  	<button class="btn btn-primary mr-10" data-bind="click:submitDepartment">提交</button>
+    <button class="btn btn-primary" data-bind="click:retrunDepartment">返回</button>
+  </div>
+</div>

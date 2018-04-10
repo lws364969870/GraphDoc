@@ -1,0 +1,25 @@
+<link href="css/adminLTE/AdminLTE.css" rel="stylesheet" type="text/css" />
+<div  data-bind="loginHandler" class="loginBg">
+	<h1></h1>
+	<div class="container w3">
+        <h2 >图文登录系统</h2>
+		<div class="fromDiv" style="padding: 65px;">
+			<div class="username">
+				<span class="username" style="height:43px">用户:</span>
+				<input type="text" name="name" class="name loginName" placeholder="" required="请输入用户" value="zbc">
+				<div class="clear"></div>
+			</div>
+			<div class="password-agileits">
+				<span class="username" style="height:43px">密码:</span>
+				<input type="password" name="password" class="password passWord" placeholder="请输入密码" required="" value="123456789">
+				<div class="clear"></div>
+			</div>
+			<a href="javascript:;" class="clear" style=" color: red;font-size: 23px;line-height: 46px;display: inline-block; cursor: pointer;">CAXA浏览器下载</a>
+			<div class="login-w3">
+				<input type="submit" class="login" value="登陆" data-bind="click:$root.loginMenthod">
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+</div>

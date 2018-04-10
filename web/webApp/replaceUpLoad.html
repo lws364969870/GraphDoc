@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <link rel="stylesheet" type="text/css" href="lib/upLoadFile/webuploader.css"/>
+        <script src="lib/jquery/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lib/public.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lib/upLoadFile/uploadPreview.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lib/upLoadFile/webuploader.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lib/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="lib/layer/skin/default/layer.css" />
+        <style>
+            ._filelist .preview-box{/*这个选择器一定要有宽高，否则图片显示不出来，因为它里面的内容是绝对定位的*/
+                width: 280px;
+                height: 160px;
+            }
+            .choose-file-btn{
+            	height: 37px;
+			    width: 82px;
+			    line-height: 35px;
+			    float: left;
+			    font-size: 15px;
+			    margin-right: 10px;
+			    border: 1px solid transparent;
+			    border-radius: 4px;
+            }
+            
+            #upload_now{
+            	float:left;
+            	display: inline-block;
+			    padding: 6px 12px;
+			    margin-bottom: 0;
+			    font-size: 14px;
+			    font-weight: normal;
+			    line-height: 1.42857143;
+			    text-align: center;
+			    white-space: nowrap;
+			    vertical-align: middle;
+			    cursor: pointer;
+			    -webkit-user-select: none;
+			    -moz-user-select: none;
+			    -ms-user-select: none;
+			    user-select: none;
+			    background-image: none;
+			    border: 1px solid transparent;
+			    border-radius: 4px;
+			    color: #fff;
+			    background-color: #00b7ee;
+            }
+        	
+        	._filelist{clear: both;}
+        	
+        	.form-horizontal .form-group {
+			    margin-right:0px;
+			    margin-left: 0px; 
+			}
+        </style>
+    </head>
+    <body>
+    	<div class="form-horizontal" style="margin-top: 15px;">
+    		<!--<div class="form-group">
+		      	<label class="col-sm-2 control-label"><span class="red">*</span>级别：</label>
+		      	<div class="col-sm-10">
+		        	<select class="form-control" id="level"></select>
+		       	</div>
+	      	</div>-->
+	      	
+	      	<div class="form-group">
+		      	<label class="col-sm-2 control-label"><span class="red">*</span>选择上传文件：</label>
+		      	<div class="col-sm-10">
+		        	<div class="choose-file-btn" id="choose_file2">选择文件</div>
+			    	<button type="button" id="upload_now">上传文件</button>
+			    	<div class="_filelist file-list2"></div>
+			    	<div>
+			    		<ul id="showError">
+			    			
+			    		</ul>
+			    	</div>
+		       	</div>
+	      	</div>
+    	</div>
+    	
+    	
+    	
+       	<script>
+       		function layerInit (url){
+       			new UploadPreview({
+	                swf: "Uploader.swf",
+	                url: url, //文件上传到后端的URL
+					//fileVal{string} [可选] [默认: "file"] 文件上传域的name，即后端接收文件的名称
+					//method{string} [可选] [默认: "post"] 上传文件时的请求类型
+					pictureOnly: false,//pictureOnly{Boolean} [可选] [默认: true] 是否只能选择图片，若设置为true则用户在选择文件时就只能选择图片，不能选择其他类型的文件。若设置为false则允许用户选择其他类型的文件
+	                //multiple{Boolean} [可选] [默认: true] 是否允许选择、上传多张图片
+					//auto{Boolean} [可选] [默认: false] 是否自动上传文件，若设置为true则在用户选定文件后立即上传该文件
+					//datas{Object} [可选] [默认: null] 上传时需要给文件添加的额外参数，若设置了参数则每一个文件在上传时都会将datas里面的数据传递给后台
+	                //threads{int} [可选] [默认: 3] 上传并发数。允许同时最大上传进程数。
+	               
+	                //previewInfo预览框相关配置
+	                previewInfo: {//预览参数配置
+	                    width: -1, //预览图片的宽度
+	                    height: -1, //预览图片的高度
+	                    viewImgHorizontal: true,//预览图是否水平垂直居中
+	                    previewClass: "new-preview",//每个预览框的class
+	                    previewElement: "div",//每个预览框的元素，只能为字符串
+	                    showToolBtn: true, //当鼠标放在图片上时是否显示工具按钮,
+	                    onlyDel: false,//是否只生成"删除"按钮
+	                    previewWrap: ".file-list2",//包裹所有预览图片的父级元素
+	                    errorMsg:"上传失败  ",
+	                },
+	                maxFileSize:2147483648,//{int} [可选] [默认: 5242880(B)] 单个文件体积最大大小，默认2115242880 Bite，即5M
+	               // maxFileSize: (1024 * 1024),
+	                maxFileNum: 1,
+	               // maxFileTotalSize: 1024*1024*5,
+	                btns: {
+	                    uploadBtn: document.getElementById("upload_now"), //开始上传按钮
+	                    retryBtn: null, //用户自定义"重新上传"按钮
+	                    chooseBtn: document.getElementById("choose_file2"),// 指定选择文件的按钮容器，不指定则不创建按钮。选择器支持 id, class, dom。
+	                    chooseBtnText: "选择文件"//选择文件按钮显示的文字
+	                    
+	                },
+	                error: function (errorInfo,file){
+//	                    console.log(errorInfo);
+	                },
+	                
+	                ignore: {
+	                    extensions: ".php,.class,.css"
+	                },
+	                //当单个文件上传出错时触发
+	                uploadError:function(WUFile,reason){
+	//              	layer.alert("errorInfo")
+//	                	console.log(reason);
+	                },
+	                //当上传成功（此处的上传成功指的是上传图片请求成功，并非图片真正上传到服务器）后所执行的函数
+	                uploadSuccess:function(WUFile,response){
+	                	var txt = '';         	
+	                	if(response["code"]== 0){
+	                		txt = "<span style='font-size: 16px; font-weight: bold;'>"+WUFile["file"]["name"]+"：</span>上传成功!";
+	                	}else if(response["code"]== 1){
+	                		
+	                		txt = "<span style='font-size: 16px; font-weight: bold;'>"+WUFile["file"]["name"]+"：</span>"+ response['message'];
+	                	}
+	                	$("#showError").append('<li>'+txt+'</li>');
+//	                	console.log(WUFile);
+//	                	console.log(response);
+//						if(response["code"]== 0){{
+//							layer.alert("上传成功！")
+//						}
+	                },
+	                
+	                fileQueued: function (WuFile){
+	//                  uploader.setData(WuFile,{
+	//                      fileId: new Date().getTime()
+	//                  });
+//	                    console.log(WuFile);
+	                    $("#addData").attr("data-uid", WuFile.source.ruid);
+	                    //console.log(WuFile)
+	                    //console.log("添加图片了！");
+	                }
+	           });
+       		}
+       </script>
+    </body>
+</html>

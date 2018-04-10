@@ -1,0 +1,40 @@
+<!--
+	作者：1970496911@qq.com
+	时间：2017-10-04
+	描述：项目产品
+-->
+<div data-bind="projectProductQueryHandler"  style="background: #fff;">
+	<div class="form-group" style="display: inline-block; width: 100%;">
+		<div class="col-sm-12 mt-10 mb-10">
+			<table class="table table-bordered table-striped table-hover mb-10">
+				<thead>
+					<tr>
+						<th class="text-center"></th>
+						<th class="text-center">cad文件</th>
+						<th class="text-center">工时</th>
+						<th class="text-center">责任人</th>
+						<th class="text-center">件数</th>
+						
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: arrList" class="addTBody">
+					<tr class="text-center">
+						<td>
+							<!-- ko if:$data.isSelect == 0 -->
+							<input type="checkbox" name="checkboxProduct" disabled="disabled"/>
+							<!-- /ko -->
+							<!-- ko if:$data.isSelect == 1 -->
+							<input type="checkbox" name="checkboxProduct" checked="checked" disabled="disabled"/>
+							<!-- /ko -->
+						</td>
+						<td data-bind="html: fileName"></td>
+						<td data-bind="html: workTime"></td>
+						<td data-bind="html: workUser"></td>
+						<td data-bind="html: workCount"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-primary" data-bind="click:exportCVS">导出</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<!-- ko if:type != "H006" || type == "H007" -->
+	<button class="btn btn-primary mr-10 btn-sm" type="button" data-bind="click:$root.delInfo">删除</button>
+<!-- /ko -->
+
+
+<!-- ko if:controllerConclusion == null-->
+									<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.controllerType', 0) }"><span class="passSelectSpan controllerType" >☑</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.controllerType', 1) }"><span  class="passSelectSpan controllerType" >□</span>不合格</span>	
+									<!-- ko -->
+									
+									<!-- ko if:controllerConclusion == "Y"-->
+									<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.controllerType', 0) }"><span class="passSelectSpan controllerType" >☑</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.controllerType', 1) }"><span  class="passSelectSpan controllerType" >□</span>不合格</span>	
+									<!-- ko -->
+									
+									<!-- ko if:controllerConclusion == "N"-->
+									<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.controllerType', 0) }"><span class="passSelectSpan controllerType" >☑</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.controllerType', 1) }"><span  class="passSelectSpan controllerType" >□</span>不合格</span>	
+									<!-- ko -->

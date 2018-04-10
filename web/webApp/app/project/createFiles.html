@@ -1,0 +1,37 @@
+<div data-bind="createFilesHandler">
+	<style>
+        ._filelist .preview-box{/*这个选择器一定要有宽高，否则图片显示不出来，因为它里面的内容是绝对定位的*/
+            width: 280px;
+            height: 160px;
+        }
+        .choose-file-btn{
+            width: 180px;
+            height: 80px;
+            background-color: #f60;
+            overflow: hidden;
+        }
+    </style>
+    
+     <div id="choose_file_wraper"  style="display: none;">
+            <div class="choose-file-btn" id="choose_file">选择图片</div>    
+        </div>
+        
+        <br />
+        <button type="button" id="render_btn">渲染按钮</button>
+        
+        
+    <!--<button data-bind="click:showUp">显示</button>
+    <button type="button" id="upload_now">上传图片</button>
+    <div class="choose-file-btn" id="choose_file2">选择图片</div>
+    <div class="_filelist file-list2"></div>-->
+    
+	<!--<div class="choose-file-btn" id="choose_file2">选择图片</div>
+    <div class="_filelist file-list2"></div>
+
+    <div class="form-group" style="margin: 10 0 15px 0;">
+	  	<div class="col-sm-12" style="text-align: right;">
+	  		<button type="button" class="btn btn-primary mr-10" id="upload_now" data-bind="click:saveFolders">上传文件</button>
+	    	<button class="btn btn-primary" data-bind="click:returnFolders">返回</button>
+	  	</div>
+  	</div>-->
+</div>

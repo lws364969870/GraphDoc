@@ -1,0 +1,98 @@
+<div data-bind="roleAddHandler">
+	<nav class="navigation">系统配置<span class="c-gray en">&gt;</span><span>角色管理</span></nav>
+  <form class="form-horizontal">
+    <fieldset>
+      <div id="legend" class="">
+        <legend class="" data-bind="text:title"></legend>
+      </div>
+	    <div class="form-group">
+      	<label class="col-sm-1 control-label"><span class="red">*</span>角色名：</label>
+      	<div class="col-sm-11">
+        	<input type="text" placeholder="请输入角色名" class="form-control txtValidation" data-type="txtStr" data-value="请输入角色名" data-bind="value:name"/>
+       	</div>
+      </div> 	
+      <div class="form-group">
+      	<label class="col-sm-1 control-label"><span class="red">*</span>密级：</label>
+      	<div class="col-sm-11">
+        	<select class="form-control" data-bind="options: roleLevelArr, value:roleLevelStr">
+		        </select>
+       	</div>
+      </div>
+      <div class="form-group"> 	
+				<label class="col-sm-1  control-label"><span class="red">*</span>状态：</label>
+				<div class="col-sm-11">
+		        <label class="radio inline"><input type="radio" value="Y" name="status"  data-bind="checked:status">启用</label>
+		        <label class="radio inline"><input type="radio" value="N" name="status"  data-bind="checked:status">停用</label>
+	  		</div>
+	    </div>
+	    <div class="form-group">
+      	<label class="col-sm-1 control-label"><span class="red">*</span>菜单列表：</label>
+      	<div class="col-sm-11" id="roleMenu">
+      		<div style=" border: 1px solid #ddd; background-color: #FFFFFF;">
+	        	<ul id="browser" class="filetree" data-bind="foreach:{data:arrLists,as:'arrList'}">
+							<!-- ko if: arrList.status == 'N' -->
+				    	<li>
+				    		<span class="folder">
+				        		<span  data-bind="text:arrList.title"></span>
+				        		<input type="checkbox" disabled="" data-bind="value:code,checked:$root.projectIds"/>
+				    		</span>
+				    		<ul>
+				    		<!-- ko foreach:{ data: arrList.child, as: 'arrListChild'} -->
+				    			<!-- ko if: arrListChild.status == 'N' -->
+								<li >
+									<span class="file">
+										<span  data-bind="text:arrListChild.title"></span>
+										<input type="checkbox" data-bind="value:code,checked:$root.projectIds"/>
+									</span>
+								</li>
+								<!-- /ko -->
+				    		<!-- /ko -->
+				    		</ul>
+				    	</li>
+				    	<!-- /ko -->
+				 		</ul>
+				 	</div>	
+       	</div>
+      </div> 	
+    	<div class="form-group"> 	
+				<label class="col-sm-1  control-label"><span class="red">*</span>角色菜单：</label>
+				<div class="col-sm-11">
+					<div style=" border: 1px solid #ddd; background-color: #FFFFFF;">
+						<p class="margin-8">
+							<span>草稿：</span>
+							<span class="margin-8">
+								<input checked="checked" type="checkbox" value="BTN001" name="BTN00" id="BTN001"/><label for="BTN001">新增</label>
+							</span>
+							<span>
+								<input checked="checked" type="checkbox" value="BTN002" name="BTN00" id="BTN002"/><label for="BTN002">提交</label>
+		  				</span>
+						</p>
+		  			<p class="margin-8">
+							<span>审批：</span>
+							<span class="margin-8">
+								<input checked="checked" type="checkbox" value="BTN003" name="BTN00" id="BTN003"/><label for="BTN003">上传文件</label>
+							</span>
+							<span>
+								<input checked="checked" type="checkbox" value="BTN004" name="BTN00" id="BTN004"/><label for="BTN004">新建文件</label>
+		  				</span>
+		  			</p>
+		  			<p class="margin-8">
+							<span>生产：</span>
+							<span class="margin-8">
+								<input checked="checked" type="checkbox" value="BTN005" name="BTN00" id="BTN005"/><label for="BTN005">新增</label>
+		  				</span>
+		  			</p>
+	  			</div>
+				</div>
+	    </div>
+    </fieldset>
+  </form>
+  <div class="form-group"> 	
+		<div class="col-sm-1"></div>
+	  <div class="col-sm-11" style="padding-left: 0;">
+	  	<button class="btn btn-primary mr-10" data-bind="click:submitRole">提交</button>
+	    <button class="btn btn-primary" data-bind="click:returnRole">返回</button>
+	  </div>
+  </div>
+  
+ 

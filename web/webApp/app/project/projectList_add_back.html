@@ -1,0 +1,226 @@
+<!--========================主要部件参数========================-->
+<div class="form-group">
+	<label class="col-sm-1 control-label">电柜型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:controllerType"/>
+	</div>
+
+	<label class="col-sm-1 control-label">电柜编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:controllerNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">电柜检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="controllerConclusion" data-bind="checked: controllerConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="controllerConclusion" data-bind="checked: controllerConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">主机型号：</label>
+	<div class="col-sm-3">
+        <input type="text" class="form-control" data-bind="value:machineType"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">主机编号：</label>
+	<div class="col-sm-3">
+        <input type="text" class="form-control" data-bind="value:machineNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">主机检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="machineConclusion" data-bind="checked: machineConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="machineConclusion" data-bind="checked: machineConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">限速器型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:governorType"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">限速器编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:governorNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">限速器检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="governorConclusion" data-bind="checked: governorConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="governorConclusion" data-bind="checked: governorConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">安全钳型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:safetiesType">
+	</div>
+	
+	<label class="col-sm-1 control-label">安全钳编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:safetiesNumber">
+	</div>
+		
+	<label class="col-sm-1 control-label">安全钳检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="safetiesConclusion" data-bind="checked: safetiesConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="safetiesConclusion" data-bind="checked: safetiesConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">缓冲器型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:bufferType"/> 
+	</div>
+	
+	<label class="col-sm-1 control-label">缓冲器编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:bufferNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">缓冲器检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="bufferConclusion" data-bind="checked: bufferConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="bufferConclusion" data-bind="checked: bufferConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">门锁型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:doorLockType"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">门锁编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:doorLockNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">门锁检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="doorLockConclusion" data-bind="checked: doorLockConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="doorLockConclusion" data-bind="checked: doorLockConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">轿门锁型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:carDoorLockType"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">轿门锁编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:carDoorLockNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">轿门锁检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="carDoorLockConclusion" data-bind="checked: carDoorLockConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="carDoorLockConclusion" data-bind="checked: carDoorLockConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">上行超速保护装置型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:overspeedDeviceType"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">上行超速保护装置编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:overspeedDeviceNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">上行超速保护装置检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="overspeedDeviceConclusion" data-bind="checked: overspeedDeviceConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="overspeedDeviceConclusion" data-bind="checked: overspeedDeviceConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">轿厢意外移动保护装置型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:collisionDeviceType"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">轿厢意外移动保护装置编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:collisionDeviceNumber"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">轿厢意外移动保护装置检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="collisionDeviceConclusion" data-bind="checked: collisionDeviceConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="collisionDeviceConclusion" data-bind="checked: collisionDeviceConclusion">不合格</label>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">安全电路型号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:safetyCircuitsType"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">安全电路编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:safetyCircuitsNumber"/>
+	</div>
+</div>
+<!--========================主要部件参数========================-->
+
+<!--========================电梯整机出厂检验记录表========================-->
+<div class="form-group">
+	<label class="col-sm-1 control-label">记录文字编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:inspectionRecord"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">出厂检验结论：</label>
+	<div class="col-sm-3">
+		<label class="radio inline"><input type="radio" value="Y" name="inspectionConclusion" data-bind="checked: inspectionConclusion">合格</label>
+        <label class="radio inline"><input type="radio" value="N" name="inspectionConclusion" data-bind="checked: inspectionConclusion">不合格</label>
+	</div>
+		
+	<label class="col-sm-1 control-label">编制人：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:coauthorMan"/>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-1 control-label">编制人日期：</label>
+	<div class="col-sm-3">
+		<input readonly  type="text" class="form-control workinput wicon" id="coauthorDate" data-bind="value:coauthorDate,click:jedateMenthod"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">检验员：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:inspectionMan"/>
+	</div>
+		
+	<label class="col-sm-1 control-label">检验员日期：</label>
+	<div class="col-sm-3">
+		<input readonly  type="text" class="form-control workinput wicon" id="inspectionDate" data-bind="value:inspectionDate,click:jedateMenthod"/>
+	</div>
+</div>
+<!--========================电梯整机出厂检验记录表========================-->
+
+<!--========================产品合格证========================-->
+<div class="form-group">
+	<label class="col-sm-1 control-label">制造许可证编号：</label>
+	<div class="col-sm-3">
+		<input type="text" class="form-control" data-bind="value:manufacturingLicense"/>
+	</div>
+	
+	<label class="col-sm-1 control-label">有效期：</label>
+	<div class="col-sm-3">
+		<input readonly  type="text" class="form-control workinput wicon" id="expiryDate" data-bind="value:expiryDate,click:jedateMenthod"/>
+	</div>
+</div>
+<!--========================产品合格证========================-->

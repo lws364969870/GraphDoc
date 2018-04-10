@@ -1,0 +1,70 @@
+<div data-bind="projectList_subproject">
+	<div class="form-group">
+		<div class="clear" style="margin: 10px 0;">
+			<label class="col-sm-2 queryCondition">项目流水号：</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" data-bind="value:serialNumber"/>
+			</div>
+			
+			<label class="col-sm-2 queryCondition">项目名：</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" data-bind="value:projectName"/>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-success" data-bind="click:queryProject"> 搜索</button>
+			</div>
+		</div>
+		
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-center">项目流水号</th>
+				<!--<th class="text-center">类型</th>-->
+				<th class="text-center">项目名</th>
+				<!--<th class="text-center">状态</th>
+				<th class="text-center">使用单位</th>
+				<th class="text-center">产品名称</th>-->
+			</tr>
+			</thead>
+			<tbody data-bind="foreach: arrList">
+			<tr class="text-center">
+				<td><input type="radio" name="subprojectRadio" data-bind="value:id"/></td>
+				<td data-bind="text: serialNumber"></td>
+				<!--<td>
+					<span data-bind="if: type == 'H001'">草稿</span>
+					<span data-bind="if: type == 'H002'">设计</span>
+					<span data-bind="if: type == 'H003'">审批</span>
+					<span data-bind="if: type == 'H004'">复审</span>
+					<span data-bind="if: type == 'H005'">生产</span>
+					<span data-bind="if: type == 'H006'">公告</span>
+					<span data-bind="if: type == 'H007'">归档</span>
+				</td>-->
+				<td class="subprojectName" data-bind="text: projectName"></td>
+				<!--<td>
+					<span data-bind="if: status == 'Y'">启用</span>
+					<span data-bind="if: status == 'N'">停用</span>
+				</td>
+				<td data-bind="text: useEnterprise"></td>
+				<td data-bind="text: productName"></td>-->
+			</tr>
+			</tbody>
+		</table>
+	</div>	
+	<div class="fr" data-bind="if:isShowPage">
+		<ul class="pagination">
+		    <li><a href="#" aria-label="Previous" data-bind = "click:function(){ $root.upPage($root.minPageNum()); }"><span aria-hidden="true">&laquo;</span></a></li>
+		    <!-- ko foreach: { data: pagesArray, as: 'page' } -->
+		    	<li data-bind="click:function(){ $root.gotoPage(page); }, css:{ active: page == $root.currentPage() } "><a href="#" data-bind="text:page"></a></li>
+		    <!-- /ko -->
+		    <li><a href="#" data-bind = "click:function(){ $root.nextPage($root.maxPageNum()); }">&raquo;</a></li>
+		</ul>	
+	</div>
+	
+	<div class="form-group" style="margin: 10 0 15px 0;">
+	  	<div class="col-sm-12" style="text-align: center;">
+	  		<button class="btn btn-primary mr-10" data-bind="click:saveSubProject">保存</button>
+	    	<button class="btn btn-primary" data-bind="click:closeSub">返回</button>
+	  	</div>
+  	</div>
+</div>

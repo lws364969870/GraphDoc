@@ -1,0 +1,742 @@
+<!--
+	作者：1970496911@qq.com
+	时间：2017-10-23
+	描述：产品合格证
+-->
+<div data-bind="projectProductQualifiedQueryHandler">
+	<style type="text/css" id="printStyleQualified">
+		@font-face {
+			font-family: "Times New Roman";
+		}
+		
+		@font-face {
+			font-family: "宋体";
+		}
+		
+		@font-face {
+			font-family: "Wingdings";
+		} 
+		
+		@font-face {
+			font-family: "楷体_GB2312";
+		}
+		
+		@font-face {
+			font-family: "隶书";
+		}
+		
+		@font-face {
+			font-family: "华文细黑";
+		}
+		
+		p.MsoNormal {
+			mso-style-name: 正文;
+			mso-style-parent: "";
+			margin: 0pt;
+			margin-bottom: .0001pt;
+			mso-pagination: none;
+			text-align: justify;
+			text-justify: inter-ideograph;
+			font-family: 'Times New Roman';
+			font-size: 10.5000pt;
+			mso-font-kerning: 1.0000pt;
+		}
+		
+		span.10 {
+			font-family: 'Times New Roman';
+		}
+		
+		span.15 {
+			font-family: 'Times New Roman';
+			font-size: 9.0000pt;
+			mso-font-kerning: 1.0000pt;
+		}
+		
+		p.MsoHeader {
+			mso-style-name: 页眉;
+			margin: 0pt;
+			margin-bottom: .0001pt;
+			border-bottom: 1.0000pt solid windowtext;
+			mso-border-bottom-alt: 0.7500pt solid windowtext;
+			padding: 0pt 0pt 1pt 0pt;
+			layout-grid-mode: char;
+			mso-pagination: none;
+			text-align: center;
+			font-family: 'Times New Roman';
+			font-size: 9.0000pt;
+			mso-font-kerning: 1.0000pt;
+		}
+		
+		p.MsoFooter {
+			mso-style-name: 页脚;
+			margin: 0pt;
+			margin-bottom: .0001pt;
+			layout-grid-mode: char;
+			mso-pagination: none;
+			text-align: left;
+			font-family: 'Times New Roman';
+			font-size: 9.0000pt;
+			mso-font-kerning: 1.0000pt;
+		}
+		
+		p.MsoAcetate {
+			mso-style-name: 批注框文本;
+			margin: 0pt;
+			margin-bottom: .0001pt;
+			mso-pagination: none;
+			text-align: justify;
+			text-justify: inter-ideograph;
+			font-family: 'Times New Roman';
+			font-size: 9.0000pt;
+			mso-font-kerning: 1.0000pt;
+		}
+		
+		span.msoIns {
+			mso-style-type: export-only;
+			mso-style-name: "";
+			text-decoration: underline;
+			text-underline: single;
+			color: blue;
+		}
+		
+		span.msoDel {
+			mso-style-type: export-only;
+			mso-style-name: "";
+			text-decoration: line-through;
+			color: red;
+		}
+		
+		table.MsoNormalTable {
+			mso-style-name: 普通表格;
+			mso-style-parent: "";
+			mso-style-noshow: yes;
+			mso-tstyle-rowband-size: 0;
+			mso-tstyle-colband-size: 0;
+			mso-padding-alt: 0.0000pt 5.4000pt 0.0000pt 5.4000pt;
+			mso-para-margin: 0pt;
+			mso-para-margin-bottom: .0001pt;
+			mso-pagination: widow-orphan;
+			font-family: 'Times New Roman';
+			font-size: 10.0000pt;
+			mso-ansi-language: #0400;
+			mso-fareast-language: #0400;
+			mso-bidi-language: #0400;
+		}
+		
+		@page {
+			mso-page-border-surround-header: no;
+			mso-page-border-surround-footer: no;
+		}
+		
+		@page Section0 {
+			margin-top: 11.9000pt;
+			margin-bottom: 28.3500pt;
+			margin-left: 62.9500pt;
+			margin-right: 55.3000pt;
+			size: 595.3000pt 841.9000pt;
+			layout-grid: 15.6000pt;
+		}
+		
+		div.Section0 {
+			page: Section0;
+		}
+		
+		
+		.Section0{border: 1px solid red;}
+		
+		
+		.MsoNormal_p{text-indent:48.0000pt;mso-char-indent-count:3.0000;line-height:200%;}
+		.MsoNormal_p_span{mso-spacerun:'yes';font-family:宋体;line-height:200%;font-size:16.0000pt;mso-font-kerning:1.0000pt;}
+		.border-bottom {
+				border-bottom: 1px solid #000;
+			    mso-spacerun: 'yes';
+			    font-family: 宋体;
+			    text-underline: single;
+			    font-size: 16.0000pt;
+			    width: 400px;
+			    display: inline-block;
+			    text-align: center;
+			    mso-font-kerning: 1.0000pt;
+		}
+		
+		.zYSpan{mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:16.0000pt;mso-font-kerning:1.0000pt;}
+		.csContext{line-height:19.0000pt;mso-line-height-rule:exactly;}
+		.csContextFont{mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;}
+		.csContextSpan{letter-spacing:0.6500pt;font-size:14.0000pt;mso-font-kerning:0.0000pt;}
+		.csContextBorder{display: inline-block; border-bottom: 1px solid #000;text-align: center;}
+		.csContextW3{width: 270px;}
+		.csContextW2{width: 200px;}
+		.csContextW408{width:402px;}
+		.csContextW115{width: 160px;}
+		.csContextW108{width: 124px;}
+		.fontSize{ font-size:14.0000pt;}
+		.mr_2{margin-right: -2px;}
+		.mr_6{margin-right: -6px;}
+		.mr-5{margin-right: 5px;}
+	</style>
+	<div>
+		<button type="button" class="btn btn-primary mr-10" data-bind="click:printPro">打印</button>
+	</div>
+	<div id="Section0" class="Section0" style="width: 800px; margin: auto;">
+		<p class="MsoNormal"><u><span style="mso-spacerun:'yes';font-family:楷体_GB2312;text-decoration:underline;text-underline:rgb(51,153,102) wave;font-size:14.0000pt;mso-font-kerning:1.0000pt;" ><o:p></o:p></span></u></p>
+		<p class="MsoNormal" style="text-indent:84.0000pt;mso-char-indent-count:8.0000;"><img width="96" height="95" src="../../img/logo.png"><span style="mso-spacerun:'yes';font-family:楷体_GB2312;font-size:28.0000pt;mso-font-kerning:1.0000pt;">&nbsp;&nbsp;&nbsp;<font face="楷体_GB2312" >高菱电梯</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><sup><span style="mso-spacerun:'yes';font-family:楷体_GB2312;font-size:28.0000pt;mso-font-kerning:1.0000pt;vertical-align:super;" ><o:p></o:p></span></sup></p>
+		<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+		<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+		<p class="MsoNormal" align=center style="text-align:center;"><span style="mso-spacerun:'yes';font-family:隶书;mso-hansi-font-family:宋体;font-size:55.0000pt;mso-font-kerning:1.0000pt;"><font face="隶书" >产</font>&nbsp;<font face="隶书" >品</font>&nbsp;<font face="隶书" >合</font>&nbsp;<font face="隶书" >格</font>&nbsp;<font face="隶书" >证</font></span><span style="mso-spacerun:'yes';font-family:隶书;mso-hansi-font-family:宋体;font-size:55.0000pt;mso-font-kerning:1.0000pt;"><o:p></o:p></span></p>
+		<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:楷体_GB2312;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+		<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+		<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+		<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span">&nbsp;
+				<font face="宋体">使</font>&nbsp;
+				<font face="宋体">用</font>&nbsp;
+				<font face="宋体">单</font>&nbsp;
+				<font face="宋体">位</font>
+			</span>
+			<span class="border-bottom">
+				<font face="宋体" data-bind="html:useEnterprise"></font>
+			</span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span">&nbsp;
+				<font face="宋体">产</font>&nbsp;
+				<font face="宋体">品</font>&nbsp;
+				<font face="宋体">名</font>&nbsp;
+				<font face="宋体">称</font>
+			</span>
+			<span class="border-bottom">
+				<font face="宋体" data-bind="html:productName"></font>
+			</span>
+		</p>
+		
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span">&nbsp;
+				<font face="宋体">合</font>&nbsp;
+				<font face="宋体">同</font>&nbsp;
+				<font face="宋体">编</font>&nbsp;
+				<font face="宋体">号</font>
+			</span>
+			<span class="border-bottom">
+				<font face="宋体" data-bind="html:contractNumber"></font>
+			</span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span">&nbsp;
+				<font face="宋体">出</font>&nbsp;
+				<font face="宋体">厂</font>&nbsp;
+				<font face="宋体">编</font>&nbsp;
+				<font face="宋体">号</font>
+			</span>
+			<span class="border-bottom">
+				<font face="宋体" data-bind="html:productionNumber"></font>
+			</span>
+		</p>	
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span">&nbsp;
+				<font face="宋体">出</font>&nbsp;
+				<font face="宋体">厂</font>&nbsp;
+				<font face="宋体">日</font>&nbsp;
+				<font face="宋体">期</font>
+			</span>
+			<span class="border-bottom">
+				<font face="宋体" data-bind="html:productionDate"></font>
+			</span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		
+		<p class="MsoNormal" style="text-align:center; border-bottom: 1px solid #000; width: 750px; margin: auto;">
+			<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:22.0000pt;mso-font-kerning:1.0000pt;">
+				<font face="楷体_GB2312" >广东高菱电梯有限公司</font>
+			</span>
+		</p>
+		
+		<p class="MsoNormal" style="text-indent:14.0000pt;mso-char-indent-count:1.0000;  margin-left: 53px;">
+			<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+				<font face="楷体_GB2312" >地址：广东省佛山市南海区狮山镇新境村曾家工业区下沙（土名）</font>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>
+			<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;"><o:p></o:p></span>
+		</p>
+		
+		<p class="MsoNormal" style="text-indent:14.0000pt;mso-char-indent-count:1.0000; margin-left: 53px;">
+			<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+				<font face="楷体_GB2312" >电话：</font>0757-86681787&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传真：0757-86681787
+			</span>
+		</p>
+		
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		
+		<p class="MsoNormal MsoNormal_p">
+			<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+		</p>
+		<p class="MsoNormal MsoNormal_p">
+			<img width="96" height="95" src="../../img/logo.png">
+		</p>
+		<p class="MsoNormal" style="text-align:center;line-height:20.0000pt;mso-line-height-rule:exactly;">
+			<span class="zYSpan">
+				<font face="楷体_GB2312" >电梯主要技术参数</font>
+			</span>
+		</p>
+		<div style="padding-left: 24px;">
+			<p class="MsoNormal" style="line-height:20.0000pt;mso-line-height-rule:exactly;">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Model&nbsp;of&nbsp;product</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Form&nbsp;of&nbsp;control</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312">产</font>
+					<font class="mr-5" face="楷体_GB2312">品</font>
+					<font class="mr-5" face="楷体_GB2312">型</font>
+					<font face="楷体_GB2312">号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:productType"></span>
+				</span>
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >控</font>
+					<font class="mr-5" face="楷体_GB2312" >制</font>
+					<font class="mr-5" face="楷体_GB2312" >方</font>
+					<font face="楷体_GB2312" >式：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:controlMode"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Running&nbsp;speed</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Form&nbsp;of&nbsp;driving</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >额</font>
+					<font class="mr-5" face="楷体_GB2312" >定</font>
+					<font class="mr-5" face="楷体_GB2312" >速</font>
+					<font face="楷体_GB2312" >度：</font>
+				</span>
+			
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:ratedSpeed"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >驱</font>
+					<font class="mr-5" face="楷体_GB2312" >动</font>
+					<font class="mr-5" face="楷体_GB2312" >方</font>
+					<font face="楷体_GB2312" >式：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:driveMode"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Stop&nbsp;service</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Rated&nbsp;load&nbsp;capacity</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >服</font>
+					<font class="mr-5" face="楷体_GB2312" >务</font>
+					<font class="mr-5" face="楷体_GB2312" >层</font>
+					<font face="楷体_GB2312" >站：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:serviceLayer"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >额</font>
+					<font class="mr-5" face="楷体_GB2312" >定</font>
+					<font class="mr-5" face="楷体_GB2312" >载</font>
+					<font face="楷体_GB2312" >重：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:ratedload"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Size&nbsp;of&nbsp;open</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Form&nbsp;of&nbsp;open</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >开</font>
+					<font class="mr-5" face="楷体_GB2312" >门</font>
+					<font class="mr-5" face="楷体_GB2312" >尺</font>
+					<font face="楷体_GB2312" >寸：</font>
+				</span>
+				<!--<span class="csContextFont fontSize">
+					<font face="楷体_GB2312" >：</font>
+				</span>-->
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:carDoorSize"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >开</font>
+					<font class="mr-5" face="楷体_GB2312" >门</font>
+					<font class="mr-5" face="楷体_GB2312" >方</font>
+					<font face="楷体_GB2312" >式：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:carDoorMode"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan" style="font-size:10.5000pt; display: inline-block; width: 343px;">Size&nbsp;of&nbsp;car</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >轿</font>
+					<font class="mr-5" face="楷体_GB2312" >厢</font>
+					<font class="mr-5" face="楷体_GB2312" >内</font>
+					<font class="mr-5" face="楷体_GB2312" >尺</font>
+					<font face="楷体_GB2312" >寸：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" style="width: 335px;" data-bind="html:carSize"></span>
+			</p>
+			<p class="MsoNormal" style="text-align:center;line-height:20.0000pt;mso-line-height-rule:exactly;">
+				<span class="zYSpan">
+					<font face="楷体_GB2312">主要部件参数</font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Controller&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Controller&nbsp; NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >电</font>
+					<font class="mr-5" face="楷体_GB2312" >柜</font>
+					<font class="mr-5" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:controllerType"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >电</font>
+					<font class="mr-5" face="楷体_GB2312" >柜</font>
+					<font class="mr-5" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:controllerNumber"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Machine&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Machine&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >主</font>
+					<font class="mr-5" face="楷体_GB2312" >机</font>
+					<font class="mr-5" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:machineType"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >主</font>
+					<font class="mr-5" face="楷体_GB2312" >机</font>
+					<font class="mr-5" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:machineNumber"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Governor&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Governor&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >限</font>
+					<font class="mr_2" face="楷体_GB2312" >速</font>
+					<font class="mr_2" face="楷体_GB2312" >器</font>
+					<font class="mr_2" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:governorType"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >限</font>
+					<font class="mr_2" face="楷体_GB2312" >速</font>
+					<font class="mr_2" face="楷体_GB2312" >器</font>
+					<font class="mr_2" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:governorNumber"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Safeties&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Safeties&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >安</font>
+					<font class="mr_2" face="楷体_GB2312" >全</font>
+					<font class="mr_2" face="楷体_GB2312" >钳</font>
+					<font class="mr_2" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:safetiesType"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >安</font>
+					<font class="mr_2" face="楷体_GB2312" >全</font>
+					<font class="mr_2" face="楷体_GB2312" >钳</font>
+					<font class="mr_2" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:safetiesNumber"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Buffer&nbsp;Type</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >缓</font>
+					<font class="mr_2" face="楷体_GB2312" >冲</font>
+					<font class="mr_2" face="楷体_GB2312" >器</font>
+					<font class="mr_2" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" style="width: 605px; text-align: left;" data-bind="html:bufferType"></span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan" style="font-size:10.5000pt;">Buffer&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >缓</font>
+					<font class="mr_2" face="楷体_GB2312" >冲</font>
+					<font class="mr_2" face="楷体_GB2312" >器</font>
+					<font class="mr_2" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize" style="width: 605px; text-align: left;">
+					<font face="楷体_GB2312" data-bind="html:doorLockNumber"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Door&nbsp;Lock&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Door&nbsp;Lock&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >门</font>
+					<font class="mr-5" face="楷体_GB2312" >锁</font>
+					<font class="mr-5" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:doorLockType"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr-5" face="楷体_GB2312" >门</font>
+					<font class="mr-5" face="楷体_GB2312" >锁</font>
+					<font class="mr-5" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:bufferNumber"></font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Car&nbsp;Door&nbsp;Lock&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Car&nbsp;Door&nbsp;Lock&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >轿</font>
+					<font class="mr_2" face="楷体_GB2312" >门</font>
+					<font class="mr_2" face="楷体_GB2312" >锁</font>
+					<font class="mr_2" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW3 fontSize" data-bind="html:carDoorLockType">/</span>
+				<span class="csContextFont fontSize">
+					<font class="mr_2" face="楷体_GB2312" >轿</font>
+					<font class="mr_2" face="楷体_GB2312" >门</font>
+					<font class="mr_2" face="楷体_GB2312" >锁</font>
+					<font class="mr_2" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder csContextW2 fontSize">
+					<font face="楷体_GB2312" data-bind="html:carDoorLockNumber">/</font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block; width: 357px;">Above&nbsp;Line&nbsp;Overspeed&nbsp;Protective&nbsp;Device&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Above&nbsp;Line&nbsp;Overspeed&nbsp;Protective&nbsp;Device&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >上</font>
+					<font class="mr_6" face="楷体_GB2312" >行</font>
+					<font class="mr_6" face="楷体_GB2312" >超</font>
+					<font class="mr_6" face="楷体_GB2312" >速</font>
+					<font class="mr_6" face="楷体_GB2312" >保</font>
+					<font class="mr_6" face="楷体_GB2312" >护</font>
+					<font class="mr_6" face="楷体_GB2312" >装</font>
+					<font class="mr_6" face="楷体_GB2312" >置</font>
+					<font class="mr_6" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder fontSize csContextW115" data-bind="html:overspeedDeviceType">HH307-3T</span>
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >上</font>
+					<font class="mr_6" face="楷体_GB2312" >行</font>
+					<font class="mr_6" face="楷体_GB2312" >超</font>
+					<font class="mr_6" face="楷体_GB2312" >速</font>
+					<font class="mr_6" face="楷体_GB2312" >保</font>
+					<font class="mr_6" face="楷体_GB2312" >护</font>
+					<font class="mr_6" face="楷体_GB2312" >装</font>
+					<font class="mr_6" face="楷体_GB2312" >置</font>
+					<font class="mr_6" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder fontSize csContextW115">
+					<font face="楷体_GB2312" data-bind="html:overspeedDeviceNumber">166876</font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block; width: 352px;">Unintended&nbsp;Car&nbsp;Movement&nbsp;Protection&nbsp;Type</span>
+				<span class="zYSpan" style="font-size:10.5000pt;">Unintended&nbsp;Car&nbsp;Movement&nbsp;Protection&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >轿</font>
+					<font class="mr_6" face="楷体_GB2312" >厢</font>
+					<font class="mr_6" face="楷体_GB2312" >意</font>
+					<font class="mr_6" face="楷体_GB2312" >外</font>
+					<font class="mr_6" face="楷体_GB2312" >移</font>
+					<font class="mr_6" face="楷体_GB2312" >动</font>
+					<font class="mr_6" face="楷体_GB2312" >保</font>
+					<font class="mr_6" face="楷体_GB2312" >护</font>
+					<font class="mr_6" face="楷体_GB2312" >装</font>
+					<font class="mr_6" face="楷体_GB2312" >置</font>
+					<font class="mr_6" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder fontSize csContextW108" data-bind="html:collisionDeviceType">HH307</span>
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >轿</font>
+					<font class="mr_6" face="楷体_GB2312" >厢</font>
+					<font class="mr_6" face="楷体_GB2312" >意</font>
+					<font class="mr_6" face="楷体_GB2312" >外</font>
+					<font class="mr_6" face="楷体_GB2312" >移</font>
+					<font class="mr_6" face="楷体_GB2312" >动</font>
+					<font class="mr_6" face="楷体_GB2312" >保</font>
+					<font class="mr_6" face="楷体_GB2312" >护</font>
+					<font class="mr_6" face="楷体_GB2312" >装</font>
+					<font class="mr_6" face="楷体_GB2312" >置</font>
+					<font class="mr_6" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder fontSize csContextW108">
+					<font face="楷体_GB2312" data-bind="html:collisionDeviceNumber">166876</font>
+				</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block; width: 352px;">Safety&nbsp;circuits&nbsp;Containing&nbsp;Electronic&nbsp;components&nbsp;Type</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >含</font>
+					<font class="mr_6" face="楷体_GB2312" >有</font>
+					<font class="mr_6" face="楷体_GB2312" >电</font>
+					<font class="mr_6" face="楷体_GB2312" >子</font>
+					<font class="mr_6" face="楷体_GB2312" >元</font>
+					<font class="mr_6" face="楷体_GB2312" >件</font>
+					<font class="mr_6" face="楷体_GB2312" >的</font>
+					<font class="mr_6" face="楷体_GB2312" >安</font>
+					<font class="mr_6" face="楷体_GB2312" >全</font>
+					<font class="mr_6" face="楷体_GB2312" >电</font>
+					<font class="mr_6" face="楷体_GB2312" >路</font>
+					<font class="mr_6" face="楷体_GB2312" >型</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder fontSize csContextW108" style="width: 476px; text-align: left;" data-bind="html:safetyCircuitsType">MCTC-MCB-C2</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="zYSpan" style="font-size:10.5000pt;">Safety&nbsp;circuits&nbsp;Containing&nbsp;Electronic&nbsp;components&nbsp;Type&nbsp;NO.</span>
+			</p>
+			<p class="MsoNormal csContext">
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >含</font>
+					<font class="mr_6" face="楷体_GB2312" >有</font>
+					<font class="mr_6" face="楷体_GB2312" >电</font>
+					<font class="mr_6" face="楷体_GB2312" >子</font>
+					<font class="mr_6" face="楷体_GB2312" >元</font>
+					<font class="mr_6" face="楷体_GB2312" >件</font>
+					<font class="mr_6" face="楷体_GB2312" >的</font>
+					<font class="mr_6" face="楷体_GB2312" >安</font>
+					<font class="mr_6" face="楷体_GB2312" >全</font>
+					<font class="mr_6" face="楷体_GB2312" >电</font>
+					<font class="mr_6" face="楷体_GB2312" >路</font>
+					<font class="mr_6" face="楷体_GB2312" >编</font>
+					<font face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextBorder fontSize csContextW108" style="width: 476px; text-align: left;">
+					<font face="楷体_GB2312" data-bind="html:safetyCircuitsNumber">H4182</font>
+				</span>
+			</p>
+			<p class="MsoNormal" style="width: 715px; text-indent:-0.1000pt;line-height:20.0000pt;mso-line-height-rule:exactly;">
+				<span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+					<font face="楷体_GB2312" >本产品在制造过程中，经检验符合</font>GB7588一2003《电梯制造与安装安全规范》（含1号修改单）的相关规范规定。经检验合格，准予出厂。</span>
+					<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+						<o:p></o:p></span></p>
+			<p class="MsoNormal" style="line-height:20.0000pt;mso-line-height-rule:exactly;">
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >质</font>
+					<font class="mr_6" face="楷体_GB2312" >量</font>
+					<font class="mr_6" face="楷体_GB2312" >检</font>
+					<font class="mr_6" face="楷体_GB2312" >验</font>
+					<font class="mr_6" face="楷体_GB2312" >员：</font>
+				</span>
+				<span class="csContextFont csContextW3 fontSize" style="display: inline-block; width: 260px;" data-bind="html:inspectionMan"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >检</font>
+					<font class="mr_6" face="楷体_GB2312" >验</font>
+					<font class="mr_6" face="楷体_GB2312" >专</font>
+					<font class="mr_6" face="楷体_GB2312" >用</font>
+					<font class="mr_6" face="楷体_GB2312" >章：</font>
+				</span>
+				<span class="csContextFont csContextW3 fontSize" style="display: inline-block;"></span>
+			</p>
+			<p class="MsoNormal" style="line-height:20.0000pt;mso-line-height-rule:exactly;">
+				<span class="csContextFont fontSize" >
+					<font class="mr_6" face="楷体_GB2312" >制</font>
+					<font class="mr_6" face="楷体_GB2312" >造</font>
+					<font class="mr_6" face="楷体_GB2312" >许</font>
+					<font class="mr_6" face="楷体_GB2312" >可</font>
+					<font class="mr_6" face="楷体_GB2312" >证</font>
+					<font class="mr_6" face="楷体_GB2312" >编</font>
+					<font class="mr_6" face="楷体_GB2312" >号：</font>
+				</span>
+				<span class="csContextFont csContextW3 fontSize" style="display: inline-block; width: 221px;" data-bind="html:coauthorMan"></span>
+				<span class="csContextFont fontSize">
+					<font class="mr_6" face="楷体_GB2312" >有</font>
+					<font class="mr_6" face="楷体_GB2312" >效</font>
+					<font class="mr_6" face="楷体_GB2312" >期</font>
+					<font class="mr_6" face="楷体_GB2312" >至：</font>
+				</span>
+				<span class="csContextFont csContextW3 fontSize" style="display: inline-block;" data-bind="html:inspectionDate"></span>
+			</p>
+			
+		</div>	
+	</div>
+</div>

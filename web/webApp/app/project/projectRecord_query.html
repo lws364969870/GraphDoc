@@ -1,0 +1,250 @@
+<!--
+	作者：1970496911@qq.com
+	时间：2017-10-23
+	描述：电梯整机出厂检验记录表
+-->
+<div data-bind="projectRecordQueryHandler">
+	<style type="text/css" id="printStyleRecord">
+		.projectRecord td{text-align: center;}
+		.projectRecord > tbody > tr > td{border: 1px solid #000;}
+		.projectRecord {border: 1px solid #000;}
+		
+		.projectRecord .conclusion{line-height: 50px;font-size: 19px;}
+		/*.projectRecord .passSelectSpan{font-size: 30px;}
+		.projectRecord .passSelectSpanNo{font-size: 23px;}*/
+		.mr-44{margin-right: 44px;}
+		
+		.edit{display: inline-block;font-size: 21px;padding-left: 0;}
+		.edit li {list-style-type:none; float: left;}
+		.edit li span{display: inline-block;min-width: 180px;}
+	</style>
+	<div>
+		<button type="button" class="btn btn-primary mr-10" data-bind="click:printPro">打印</button>
+	</div>
+	<div id="printRecord" style="padding: 0 30px;">
+		<div id="toInsert"></div>
+		<div style="text-align: center; font-size: 23px;padding-top:15px;">广东高菱电梯有限公司</div>
+		<div style="text-align: center; font-size: 30px;font-weight: 900;margin: 5px 0;">电梯整机出厂检验记录表</div>
+		<div style="font-size: 18px;">记录文字编号：<span data-bind="html:inspectionRecord">JLCX16-02-02</span></div>
+		<div>
+			<table style="margin-bottom: 10px;" class="table table-bordered projectRecord">
+				<tr>
+					<td>使用单位</td>
+					<td colspan="4" data-bind="html:useEnterprise">黄治南</td>
+					<td>产品名称</td>
+					<td data-bind="html:productName">有机房载货电梯</td>
+				</tr>
+				
+				<tr>
+					<td>合同编号</td>
+					<td colspan="2" data-bind="html:contractNumber">BL16122101</td>
+					<td>生产编号</td>
+					<td data-bind="html:productionNumber">H3967</td>
+					<td>出厂日期</td>
+					<td data-bind="html:productionDate"></td>
+				</tr>
+				
+				<tr>
+					<td>产品型号</td>
+					<td colspan="4" data-bind="html:productType">THJ2000/0.5-JXW(VVVF)</td>
+					<td>控制模式</td>
+					<td data-bind="html:controlMode">集选变频</td>
+				</tr>
+				
+				<tr>
+					<td>额定速度</td>
+					<td colspan="4" data-bind="html:ratedSpeed">0.5m/s</td>
+					<td>驱动方式</td>
+					<td data-bind="html:driveMode">曳引式</td>
+				</tr>
+				
+				<tr>
+					<td>服务层站</td>
+					<td colspan="4" data-bind="html:serviceLayer">4层4站4门</td>
+					<td>额定载重</td>
+					<td data-bind="html:ratedload">2000Kg</td>
+				</tr>
+				
+				<tr>
+					<td>开门尺寸</td>
+					<td colspan="4" data-bind="html:carDoorSize">1600宽×2100高	</td>
+					<td>开门方式</td>
+					<td data-bind="html:carDoorMode">左开门</td>
+				</tr>
+				
+				<tr>
+					<td>轿厢尺寸</td>
+					<td colspan="4" data-bind="html:carSize">1900宽×2200深×2200高</td>
+					<td>曳引比</td>
+					<td data-bind="html:deviceRatio">2：1</td>
+				</tr>
+				
+				<tr>
+					<td colspan="5">主要部件及参数</td>
+					<td colspan="2">检验结论</td>
+				</tr>
+				
+				<tr>
+					<td>电柜型号</td>
+					<td colspan="4" data-bind="html:controllerType">JXVF(NICE3000)</td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan controllerType">□</span>合格</span>
+						<span><span  class="passSelectSpan controllerType">□</span>不合格</span>	
+					</td>
+				</tr>
+				
+				<tr>
+					<td>电柜编号</td>
+					<td colspan="4" data-bind="html:controllerNumber"></td>
+				</tr>
+				
+				<tr>
+					<td>主机型号</td>
+					<td colspan="4" data-bind="html:machineType">YJ210A(11)(三美)</td>
+					<!--<td data-bind="html:controllerNumber">2000㎏</td>
+					<td data-bind="html:controllerNumber">0.5m/s</td>
+					<td data-bind="html:controllerNumber">2：1</td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan machineConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan machineConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>主机编号</td>
+					<td colspan="4" data-bind="html:machineNumber"></td>
+				</tr>
+				
+				<tr>
+					<td>限速器型号</td>
+					<td colspan="4" data-bind="html:governorType">XCZ05(永通力)</td>
+					<!--<td>0.5m/s</td>
+					<td></td>
+					<td></td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan governorConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan governorConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>限速器编号</td>
+					<td colspan="4" data-bind="html:governorNumber"></td>
+				</tr>
+				
+				<tr>
+					<td>安全钳型号</td>
+					<td colspan="4" data-bind="html:safetiesType">XAZ03(永通力)</td>
+					<!--<td>0.5m/s</td>
+					<td>P+Q值</td>
+					<td>3380kg</td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan safetiesConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan safetiesConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>安全钳编号</td>
+					<td colspan="4" data-bind="html:safetiesNumber"></td>
+				</tr>
+				
+				<tr>
+					<td>缓冲器型号</td>
+					<td colspan="4" data-bind="html:bufferType">轿厢</td>
+					<!--<td>JHQ-C2(骄杨)</td>
+					<td>对重:</td>
+					<td>JHQ-C2(骄杨)</td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan bufferConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan bufferConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>缓冲器编号</td>
+					<td colspan="4" data-bind="html:doorLockNumber"></td>
+					<!--<td></td>
+					<td></td>
+					<td></td>-->
+				</tr>
+				
+				<tr>
+					<td>门锁型号</td>
+					<td colspan="4" data-bind="html:doorLockType">YTL-161型</td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan doorLockConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan doorLockConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>门锁编号</td>
+					<td colspan="4" data-bind="html:bufferNumber"></td>
+				</tr>
+				
+				<tr>
+					<td>上行超速保护装置型号</td>
+					<td colspan="4" data-bind="html:overspeedDeviceType">YJSQ03-A(永通力)</td>
+					<!--<td></td>
+					<td>0.5m/s</td>
+					<td></td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan overspeedDeviceConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan overspeedDeviceConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>上行超速保护装置编号</td>
+					<td colspan="4" data-bind="html:overspeedDeviceNumber"></td>
+				</tr>
+				
+				<tr>
+					<td>轿门锁型号</td>
+					<td colspan="4" data-bind="html:carDoorLockType">无</td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan carDoorLockConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan carDoorLockConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>轿门锁编号</td>
+					<td colspan="4" data-bind="html:carDoorLockNumber"></td>
+				</tr>
+				
+				<tr>
+					<td>轿厢意外移动保护装置型号</td>
+					<td colspan="4" data-bind="html:collisionDeviceType">YJSQ03-A</td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44"><span class="passSelectSpan collisionDeviceConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan collisionDeviceConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>轿厢意外移动保护装置编号</td>
+					<td colspan="4" data-bind="html:collisionDeviceNumber"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="7" style="height: 30px;"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="7" class="conclusion" style="line-height: 30px; text-align: left;">
+						<span class="mr-44"><span class="passSelectSpan inspectionConclusion">□</span>合格</span>
+						<span><span  class="passSelectSpan inspectionConclusion">□</span>不合格</span>
+					</td>
+				</tr>
+			</table>
+			<ul class="edit">
+				<li>编制：<span class="" data-bind="html:coauthorMan"></span></li>
+				<li>日期：<span data-bind="html:coauthorDate"></span></li>
+				<li>检验员：<span data-bind="html:inspectionMan"></span></li>
+				<li>日期：<span data-bind="html:inspectionDate"></span></li>
+			</ul>
+		</div>
+	</div>
+</div>

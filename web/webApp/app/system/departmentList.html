@@ -1,0 +1,51 @@
+<div data-bind="departmentListHandler" class="col-sm-12">
+	<nav class="navigation">系统配置<span class="c-gray en">&gt;</span><span>部门管理</span></nav>
+	<div class="form-group">
+		<label class="queryCondition control-label">部门名称：</label>
+		<div class="col-sm-3">
+			<input type="text" placeholder="请输入部门名称" class="form-control" data-bind="value:name"/>
+		</div>
+		<button class="btn btn-success" data-bind="click:loadEpartment"> 搜索</button>
+	</div>
+	
+	<div class="col-sm-12 cl pd-5 bg-1 bk-gray mb-10">
+		<button  class="btn btn-primary" data-bind="click:adddEpartment">添加</button>
+	</div>
+	<table class="table table-bordered table-striped table-hover">
+		<thead>
+			<tr>
+				<th class="text-center">序号</th>
+				<th class="text-center">部门名称</th>
+				<th class="text-center">状态</th>
+				<th class="text-center">操作</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: epartmentArr">
+			<tr class="text-center">
+				<td data-bind="text: $index() + 1"></td>
+				<td data-bind="text: name"></td>
+				<td>
+					<div data-bind="if:status == 'Y'">
+						启用
+					</div>
+					<div data-bind="if:status == 'N'">
+						停用
+					</div>
+				</td>
+				<td>
+					<button class="btn btn-primary mr-10" type="button" data-bind="click:$root.updateDep">编辑</button>
+					<button class="btn btn-primary mr-10" type="button" data-bind="click:$root.delDep">删除</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="fr" data-bind="if:isShowPage">
+	<ul class="pagination">
+	    <li><a href="#" aria-label="Previous" data-bind = "click:function(){ $root.upPage($root.minPageNum()); }"><span aria-hidden="true">&laquo;</span></a></li>
+	    <!-- ko foreach: { data: pagesArray, as: 'page' } -->
+	    	<li data-bind="click:function(){ $root.gotoPage(page); }, css:{ active: page == $root.currentPage() } "><a href="#" data-bind="text:page"></a></li>
+	    <!-- /ko -->
+	    <li><a href="#" data-bind = "click:function(){ $root.nextPage($root.maxPageNum()); }">&raquo;</a></li>
+	</ul>	
+</div>

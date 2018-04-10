@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="../../lib/treeView/jquery.treeview.css" />
+<div data-bind="projectSelectTreeFolderHandler">
+	<ul data-bind="foreach:{data:projectsArr,as:'arrList'}"> 
+		<!-- ko if: arrList.type == 0 -->
+		<li>
+			<span class="folder" data-bind="text:arrList.name,click:$root.selectProId"></span>
+			<span data-bind="attr :{id : arrList.id}">
+		        		
+        	</span>
+		</li>
+		<!-- /ko-->
+		
+		<!-- ko if: arrList.type == 1 -->
+		<li>
+			<span class="file" data-bind="text:arrList.name,click:$root.selectProId"></span>
+			
+			<span data-bind="attr :{id : arrList.id}">
+		        		
+        	</span>
+		</li>
+		<!-- /ko-->
+	</ul>
+</div>

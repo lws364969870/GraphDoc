@@ -1,0 +1,146 @@
+<div data-bind="projectListHandler">
+	<nav class="navigation">项目管理<span class="c-gray en">&gt;</span><span data-bind="html:navigation">草稿</span></nav>
+	<div class="form-group row clear">
+		<label class="col-sm-1 queryCondition">项目流水号：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" data-bind="value:serialNumber"/>
+		</div>
+		
+		<label class="col-sm-1 queryCondition">项目名：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" data-bind="value:projectName"/>
+		</div>
+		
+		<label class="col-sm-1 queryCondition">业务员：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" data-bind="value:salesMan"/>
+		</div>
+		<!--<label class="col-sm-1 queryCondition">相关日期：</label>
+		<div class="col-sm-3">
+			<input style="width: 46%;" type="text" class="form-control workinput wicon" id="relevantDate" data-bind="click:jedateMenthod" readonly>
+			<span style="float: left; line-height: 34px; height: 34px; padding: 5px;">至</span>
+			<input style="width: 46%;" type="text" class="form-control workinput wicon" id="relevantDate_begin"  data-bind="click:jedateMenthod"readonly>
+		</div>-->
+<!--		
+		<label class="col-sm-1 queryCondition">状态：</label>
+		<div class="col-sm-3">
+			<select class="form-control valtype" data-bind="options: statusArr, value:statusStr, optionsValue: 'textStr' , optionsText: 'valueStr',  optionsCaption: '请选择'">
+			</select>
+		</div>-->
+	</div>
+	
+	
+	<div class="form-group row clear">
+		<label class="col-sm-1 queryCondition">使用单位：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" data-bind="value:useEnterprise"/>
+		</div>
+
+		<label class="col-sm-1 queryCondition">产品名称：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" data-bind="value:productName"/>
+		</div>
+			
+		<label class="col-sm-1 queryCondition">合同编号：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" data-bind="value:contractNumber"/>
+		</div>
+	</div>
+	
+	<div class="form-group row clear">
+		<label class="col-sm-1 queryCondition">出厂编号：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" id="productionNumber" data-bind="value:productionNumber"/>
+		</div>
+		
+		<label class="col-sm-1 queryCondition">出厂日期：</label>
+		<div class="col-sm-3">
+			<input style="width: 45%;" type="text" class="form-control workinput wicon" id="productionDate" data-bind="click:jedateMenthod" readonly>
+			<span style="float: left; line-height: 34px; height: 34px; padding: 5px;">至</span>
+			<input style="width: 45%;" type="text" class="form-control workinput wicon" id="productionDate_begin"  data-bind="click:jedateMenthod"readonly>
+		</div>
+		
+		<label class="col-sm-1 queryCondition">责任公司：</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" data-bind="value:responsibleCompany"/>
+		</div>
+	</div>
+	
+	
+	
+	<div class="form-group row clear">	
+		<label class="col-sm-1 queryCondition"></label>
+		<div class="col-sm-3">
+			<button class="btn btn-success" data-bind="click:$root.queryProject"> 搜索</button>
+		</div>
+	</div>
+	
+	<div data-bind = "if:addBtnShow">
+		<div class="col-sm-12 cl pd-5 bg-1 bk-gray mb-10" >
+			<button  class="btn btn-primary" data-bind="click:$root.addProject">添加</button>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+			<tr>
+				<th class="text-center">序号</th>
+				<th class="text-center">项目流水号</th>
+				<th class="text-center">类型</th>
+				<th class="text-center">项目名</th>
+				<th class="text-center">状态</th>
+				<th class="text-center">使用单位</th>
+				<th class="text-center">产品名称</th>
+				<th class="text-center">操作</th>
+	
+			</tr>
+			</thead>
+			<tbody data-bind="foreach: arrList">
+			<tr class="text-center">
+				<td data-bind="text: $index() + 1"></td>
+				<td data-bind="text: serialNumber"></td>
+				<td>
+					<span data-bind="if: type == 'H001'">草稿</span>
+					<span data-bind="if: type == 'H002'">设计</span>
+					<span data-bind="if: type == 'H003'">审批</span>
+					<span data-bind="if: type == 'H004'">复审</span>
+					<span data-bind="if: type == 'H005'">生产</span>
+					<span data-bind="if: type == 'H006'">生产完成</span>
+					<span data-bind="if: type == 'H007'">公告</span>
+					<span data-bind="if: type == 'H008'">归档</span>
+				</td>
+				<td data-bind="attr: {title: projectName },text: projectName" class="limitText"></td>
+				<td>
+					<span data-bind="if: status == 'Y'">启用</span>
+					<span data-bind="if: status == 'N'">停用</span>
+				</td>
+				<td data-bind="text: useEnterprise"></td>
+				<td data-bind="text: productName"></td>
+				<td>
+					<button class="btn btn-primary mr-10 btn-sm" type="button" data-bind="click:$root.updateInfo">查看</button>
+					<!-- ko if: $root.copyBtnShow -->
+					<button class="btn btn-primary btn-sm mr-10" type="button" data-bind="click:$root.copy">复制项目</button>
+					<!-- /ko -->
+						
+					<!-- ko if: $root.delBtnShow -->
+					<button class="btn btn-primary mr-10 btn-sm" type="button" data-bind="click:$root.delInfo">删除</button>
+					<!-- /ko -->
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>	
+	<div class="form-group ">
+		<ul class="pagination fr"></ul>
+	</div>
+</div>
+<div class="fr" data-bind="if:isShowPage">
+	<ul class="pagination">
+	    <li><a href="#" aria-label="Previous" data-bind = "click:function(){ $root.upPage($root.minPageNum()); }"><span aria-hidden="true">&laquo;</span></a></li>
+	    <!-- ko foreach: { data: pagesArray, as: 'page' } -->
+	    	<li data-bind="click:function(){ $root.gotoPage(page); }, css:{ active: page == $root.currentPage() } "><a href="#" data-bind="text:page"></a></li>
+	    <!-- /ko -->
+	    <li><a href="#" data-bind = "click:function(){ $root.nextPage($root.maxPageNum()); }">&raquo;</a></li>
+	</ul>	
+</div>

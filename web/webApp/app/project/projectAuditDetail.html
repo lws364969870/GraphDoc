@@ -1,0 +1,60 @@
+<!--
+	作者：1970496911@qq.com
+	时间：2017-10-07
+	描述：审批意见详情
+-->
+<div data-bind="projectAuditDetailHandler">
+	<form class="form-horizontal" style="margin-top: 30px; width: 97%;" action="">
+	    <fieldset>
+		    <div class="form-group" style="margin: 10 0 15px 0;">
+	      		<label class="col-sm-3 control-label">审批意见：</label>
+	      		<div class="col-sm-8">
+	      			<textarea disabled="disabled" class="form-control" rows="7" cols="20" data-bind="value:opinion" style="resize: none;">
+	      				
+	      				
+	      			</textarea>
+	       	 	</div>
+		    </div>
+		    
+		    <div class="form-group" style="margin: 10 0 15px 0;">
+	      		<label class="col-sm-3 control-label">类型：</label>
+	      		<div class="col-sm-8">
+	      			<input disabled="disabled" type="text" class="form-control" data-bind="value:type"/>
+	       	 	</div>
+		    </div>
+		    
+		    <div class="form-group" style="margin: 10 0 15px 0;">
+	      		<label class="col-sm-3 control-label">审批前项目状态：</label>
+	      		<div class="col-sm-8">
+	      			<input disabled="disabled" type="text" class="form-control" data-bind="value:beforeProjectType"/>
+	       	 	</div>
+		    </div>
+		  
+		    <div class="form-group" style="margin: 10 0 15px 0;">
+	      		<label class="col-sm-3 control-label">审批后项目状态：</label>
+	      		<div class="col-sm-8">
+	      			<input disabled="disabled" type="text" class="form-control" data-bind="value:afterProjectType"/>
+	       	 	</div>
+		    </div>
+		    
+		    <div class="form-group" style="margin: 10 0 15px 0;">
+	      		<label class="col-sm-3 control-label">操作人名称：</label>
+	      		<div class="col-sm-8">
+	      			<input disabled="disabled" type="text" class="form-control" data-bind="value:userName"/>
+	       	 	</div>
+		    </div>
+		    
+		    <div class="form-group" style="margin: 10 0 15px 0;">
+	      		<label class="col-sm-3 control-label">操作时间：</label>
+	      		<div class="col-sm-8">
+	      			<input disabled="disabled" type="text" class="form-control" data-bind="value:time"/>
+	       	 	</div>
+		    </div>
+	    </fieldset>
+	</form>
+	  <div class="col-sm-3"></div>
+	  
+	  <div class="col-sm-8" style="padding-left: 0;">
+	    <button class="btn btn-primary" data-bind="click:returnAuidMenthod">关闭</button>
+	  </div>
+</div>

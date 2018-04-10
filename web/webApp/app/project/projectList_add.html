@@ -1,0 +1,1237 @@
+<div data-bind="projectListAddHandler" id="projectListHandler">
+	<nav class="navigation">项目管理<span class="c-gray en">&gt;</span><span data-bind="html:navigation">草稿</span></nav>
+	<style type="text/css">
+		@media (min-width: 768px){
+			.col-sm-7 {
+			    width: 53.333333%;
+			}
+		}	
+	</style>
+	<div class="col-sm-12 cl pd-5 bg-1 bk-gray mb-10">
+		<!-- ko if:addBtnShow -->
+		<button type="button" class="btn btn-primary mr-10" data-bind="click:savePro">保存</button>
+		<!-- /ko -->
+		<!-- ko if:setProType -->
+		<button type="button" class="btn btn-primary mr-10" data-bind="click:setProjectType">保存归档状态</button>
+		<!-- /ko -->
+		<!-- ko if:examineBtnShow -->
+			<button type="button" class="btn btn-primary mr-10" data-bind="click:submitExamine">审批</button>
+		<!-- /ko -->
+		<!-- ko if: copyBtnShow -->
+			<button class="btn btn-primary mr-10" type="button" data-bind="click:copy">复制项目</button>
+		<!-- /ko -->
+		<button type="button" class="btn btn-primary" data-bind="click:retrunProject">返回</button>
+		<input type="text" data-bind="value:testIdx"/>
+		<button type="button" class="btn btn-primary" data-bind="click:testSave">设置数据</button>
+	</div>
+	
+	
+	<ul class="nav nav-tabs" id="myTab">
+		<li class="active"><a href="#basics">基础信息</a></li>
+		<!-- ko if:uploadingBtnShow -->
+		<li><a href="#file">上传功能</a></li>
+		<!-- /ko -->
+		
+		<!-- ko if:AuditBtnShow -->
+		<li><a href="#Audit">历史审批信息</a></li>
+		<!-- /ko -->
+		
+		<!-- ko if:allProductsBtnShow -->
+		<li><a href="#product">所有产品</a></li>
+		<!-- /ko -->
+		
+		<!-- ko if:productQualifiedBtnShow -->
+		<li><a href="#projectProductQualified">产品合格证</a></li>
+		<!-- /ko -->
+		
+		<!-- ko if:recordBtnShow -->
+		<li><a href="#projectRecord">电梯整机出厂检验记录表</a></li>
+		<!-- /ko -->
+	</ul>
+	 
+	<div class="tab-content">
+		<div class="tab-pane active" id="basics" style="border: 1px solid #ccc; border-top: 0;">
+	  		<div class="form-horizontal" id="basics" style="background: #fff; padding: 20px;">
+				<div class="form-group">
+					<label class="col-sm-1 control-label">项目流水号：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="serialNumber" disabled data-bind="value:serialNumber"/>
+					</div>
+		
+					<label class="col-sm-1 control-label"><span class="red">*</span>项目名：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control txtValidation" data-type="txtStr" data-value="请输入项目名" id="projectName" data-bind="value:projectName"/>
+					</div>
+					
+					<label class="col-sm-1 control-label"><span class="red">*</span>类型：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="type" disabled="" data-bind="value:typeStr"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label">关联子项目：</label>
+					<div class="col-sm-7">
+						<input type="hidden" id="parentId" data-bind="value:parentId"/>
+						<input readonly type="text" class="form-control" id="parentName" style="width: 87%; float: left;" data-bind="value:parentName"/>
+						<button class="btn btn-primary relevance" style="float: right; " data-bind="click:relevance">关联</button>
+					</div>
+					<label class="col-sm-1 control-label"><span class="red">*</span>状态：</label>
+					<div class="col-sm-3">
+				        <label class="radio inline"><input type="radio" value="Y" name="status" data-bind="checked: status">启用</label>
+				        <label class="radio inline"><input type="radio" value="N" name="status" data-bind="checked: status">停用</label>
+			    	</div>
+				</div>
+				
+				<!--========================基础信息========================-->
+				<div class="form-group">
+					<label class="col-sm-1 control-label">使用单位：</label>
+					<div class="col-sm-3">
+				       <input type="text" class="form-control" data-bind="value:useEnterprise"/>
+					</div>
+					
+					<label class="col-sm-1 control-label">产品名称：</label>
+					<div class="col-sm-3">
+				       <input type="text" class="form-control" data-bind="value:productName"/>
+					</div>
+					
+					<label class="col-sm-1 control-label">合同编号：</label>
+					<div class="col-sm-3">
+				       <input type="text" class="form-control" data-bind="value:contractNumber"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label">出厂编号：</label>
+					<div class="col-sm-3">
+				       <input type="text" class="form-control" data-bind="value:productionNumber"/>
+					</div>
+					
+					<label class="col-sm-1 control-label">出厂日期：</label>
+					<div class="col-sm-3">
+						<input readonly  type="text" class="form-control workinput wicon productionDate" data-bind="value:productionDate,click:function(data, event) { jedateMenthod2(data,event,'.productionDate')}"/>
+					</div>
+					
+					<label class="col-sm-1 control-label">责任公司：</label>
+					<div class="col-sm-3">
+				       <input type="text" class="form-control" data-bind="value:responsibleCompany"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label">业务员：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:salesMan"/>
+					</div>
+				
+					<label class="col-sm-1 control-label">相关日期：</label>
+					<div class="col-sm-3">
+						<input readonly  type="text" class="form-control workinput wicon" id="relevantDate" data-bind="value:relevantDate,click:jedateMenthod"/>
+					</div>
+				</div>
+				<!--========================基础信息========================-->
+				
+				
+				<!--========================电梯主要技术参数========================-->
+				<div class="form-group">
+					<label class="col-sm-1 control-label">产品型号：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:productType"/>
+					</div>
+				
+					<label class="col-sm-1 control-label">控制方式：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:controlMode"/>
+					</div>
+						
+					<label class="col-sm-1 control-label">额定速度：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:ratedSpeed"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label">驱动方式：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:driveMode"/>
+					</div>
+				
+					<label class="col-sm-1 control-label">服务层站：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:serviceLayer"/>
+					</div>
+						
+					<label class="col-sm-1 control-label">额定载重：</label>
+					<div class="col-sm-3">
+						<input  type="text" class="form-control" data-bind="value:ratedload"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label">开门尺寸：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:carDoorSize"/>
+					</div>
+				
+					<label class="col-sm-1 control-label">开门方式：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:carDoorMode"/>
+					</div>
+						
+					<label class="col-sm-1 control-label">轿厢内尺寸：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:carSize"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label">曳引比：</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" data-bind="value:deviceRatio"/>
+					</div>
+				</div>
+				<!--========================电梯主要技术参数========================-->
+			</div>
+	  	</div>
+	  	
+	  		
+	  	<!-- ko if:uploadingBtnShow -->
+	  	<div class="tab-pane" id="file" style="border: 1px solid #ccc;border-top: 0;">
+	  		<div id="projectFileManageList"></div>
+	  	</div>
+	  	<!-- /ko -->
+		
+		<!-- ko if:AuditBtnShow -->
+		<div class="tab-pane" id="Audit" style="border: 1px solid #ccc;border-top: 0;">
+	  		<div id="projectAuditList"></div>
+	  	</div>
+	  	<!-- /ko -->
+	  	
+	  		
+	  	<!-- ko if:allProductsBtnShow -->
+	  	<div class="tab-pane" id="product" style="border: 1px solid #ccc;border-top: 0;">
+	  		<div id="projectProductListAdd"  style="background: #fff;">
+				<div class="form-group" style="display: inline-block; width: 100%;">
+					<div class="col-sm-12 mt-10 mb-10">
+						<table class="table table-bordered table-striped table-hover mb-10">
+							<thead>
+								<tr>
+									<th class="text-center">cad文件</th>
+									<th class="text-center">工时</th>
+									<th class="text-center">责任人</th>
+									<th class="text-center">件数</th>
+									<th class="text-center">操作</th>
+								</tr>
+							</thead>
+							<tbody data-bind="foreach: workJson" class="addTBody">
+								<tr class="text-center">
+									<td class="hide">
+										<input type="text" data-bind="value: isSelect" value="0" style="width: 100%;"/>
+									</td>
+									<td>
+										<input type="text" data-bind="value: fileName" style="width: 100%;"/>
+									</td>
+									<td>
+										<input type="text" data-bind="value: workTime" style="width: 100%;"/>
+									</td>
+									<td>
+										<input type="text" data-bind="value: workUser" style="width: 100%;"/>
+									</td>
+									<td>
+										<input type="text" data-bind="value: workCount" style="width: 100%;"/>
+									</td>
+									<td>
+										<button class="btn btn-primary mr-10 btn-sm" type="button" data-bind="click:$root.delAllPro">删除</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="btn btn-primary" data-bind="click:$root.addProduct">添加</button>
+						<button class="btn btn-primary" data-bind="click:$root.exportCVS">导出</button>
+					</div>
+				</div>
+			</div>
+	  		<div id="projectProductList"></div>
+	  	</div>
+	  	<!-- /ko -->
+	  	
+	  		
+	  	<!-- ko if:productQualifiedBtnShow -->
+	  	<div class="tab-pane" id="projectProductQualified" style="border: 1px solid #ccc;border-top: 0;">
+	  		<div id="projectProductQualifiedModuleWrite">
+	  			<style type="text/css">
+					@font-face {
+						font-family: "Times New Roman";
+					}
+					
+					@font-face {
+						font-family: "宋体";
+					}
+					
+					@font-face {
+						font-family: "Wingdings";
+					} 
+					
+					@font-face {
+						font-family: "楷体_GB2312";
+					}
+					
+					@font-face {
+						font-family: "隶书";
+					}
+					
+					@font-face {
+						font-family: "华文细黑";
+					}
+					
+					p.MsoNormal {
+						mso-style-name: 正文;
+						mso-style-parent: "";
+						margin: 0pt;
+						margin-bottom: .0001pt;
+						mso-pagination: none;
+						text-align: justify;
+						text-justify: inter-ideograph;
+						font-family: 'Times New Roman';
+						font-size: 10.5000pt;
+						mso-font-kerning: 1.0000pt;
+					}
+					
+					span.10 {
+						font-family: 'Times New Roman';
+					}
+					
+					span.15 {
+						font-family: 'Times New Roman';
+						font-size: 9.0000pt;
+						mso-font-kerning: 1.0000pt;
+					}
+					
+					p.MsoHeader {
+						mso-style-name: 页眉;
+						margin: 0pt;
+						margin-bottom: .0001pt;
+						border-bottom: 1.0000pt solid windowtext;
+						mso-border-bottom-alt: 0.7500pt solid windowtext;
+						padding: 0pt 0pt 1pt 0pt;
+						layout-grid-mode: char;
+						mso-pagination: none;
+						text-align: center;
+						font-family: 'Times New Roman';
+						font-size: 9.0000pt;
+						mso-font-kerning: 1.0000pt;
+					}
+					
+					p.MsoFooter {
+						mso-style-name: 页脚;
+						margin: 0pt;
+						margin-bottom: .0001pt;
+						layout-grid-mode: char;
+						mso-pagination: none;
+						text-align: left;
+						font-family: 'Times New Roman';
+						font-size: 9.0000pt;
+						mso-font-kerning: 1.0000pt;
+					}
+					
+					p.MsoAcetate {
+						mso-style-name: 批注框文本;
+						margin: 0pt;
+						margin-bottom: .0001pt;
+						mso-pagination: none;
+						text-align: justify;
+						text-justify: inter-ideograph;
+						font-family: 'Times New Roman';
+						font-size: 9.0000pt;
+						mso-font-kerning: 1.0000pt;
+					}
+					
+					span.msoIns {
+						mso-style-type: export-only;
+						mso-style-name: "";
+						text-decoration: underline;
+						text-underline: single;
+						color: blue;
+					}
+					
+					span.msoDel {
+						mso-style-type: export-only;
+						mso-style-name: "";
+						text-decoration: line-through;
+						color: red;
+					}
+					
+					table.MsoNormalTable {
+						mso-style-name: 普通表格;
+						mso-style-parent: "";
+						mso-style-noshow: yes;
+						mso-tstyle-rowband-size: 0;
+						mso-tstyle-colband-size: 0;
+						mso-padding-alt: 0.0000pt 5.4000pt 0.0000pt 5.4000pt;
+						mso-para-margin: 0pt;
+						mso-para-margin-bottom: .0001pt;
+						mso-pagination: widow-orphan;
+						font-family: 'Times New Roman';
+						font-size: 10.0000pt;
+						mso-ansi-language: #0400;
+						mso-fareast-language: #0400;
+						mso-bidi-language: #0400;
+					}
+					
+					@page {
+						mso-page-border-surround-header: no;
+						mso-page-border-surround-footer: no;
+					}
+					
+					@page Section0 {
+						margin-top: 11.9000pt;
+						margin-bottom: 28.3500pt;
+						margin-left: 62.9500pt;
+						margin-right: 55.3000pt;
+						size: 595.3000pt 841.9000pt;
+						layout-grid: 15.6000pt;
+					}
+					
+					div.Section0 {
+						page: Section0;
+					}
+					
+					
+					.Section0{border: 1px solid red;}
+					
+					
+					.MsoNormal_p{text-indent:48.0000pt;mso-char-indent-count:3.0000;line-height:200%;}
+					.MsoNormal_p_span{mso-spacerun:'yes';font-family:宋体;line-height:200%;font-size:16.0000pt;mso-font-kerning:1.0000pt;}
+					.border-bottom {
+							/*border-bottom: 1px solid #000;*/
+						   /* */mso-spacerun: 'yes';
+						    font-family: 宋体;
+						    text-underline: single;
+						    font-size: 16.0000pt;
+						    width: 400px;
+						    display: inline-block;
+						    text-align: center;
+						    mso-font-kerning: 1.0000pt;
+					}
+					
+					.zYSpan{mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:16.0000pt;mso-font-kerning:1.0000pt;}
+					.csContext{line-height:19.0000pt;mso-line-height-rule:exactly;}
+					.csContextFont{mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;}
+					.csContextSpan{letter-spacing:0.6500pt;font-size:14.0000pt;mso-font-kerning:0.0000pt;}
+					.csContextBorder{display: inline-block; border-bottom: 1px solid #000;text-align: center;}
+					.csContextW3{width: 270px;}
+					.csContextW2{width: 200px;}
+					.csContextW408{width:402px;}
+					.csContextW115{width: 160px;}
+					.csContextW108{width: 124px;}
+					.fontSize{ font-size:14.0000pt;}
+					.mr_2{margin-right: -2px;}
+					.mr_6{margin-right: -6px;}
+					.mr-5{margin-right: 5px;}
+				</style>
+				<div>
+					<button type="button" class="btn btn-primary mr-10" data-bind="click:printProjectProductQualifiedModule">打印</button>
+				</div>
+				<div class="Section0" style="width: 800px; margin: auto;">
+					<p class="MsoNormal"><u><span style="mso-spacerun:'yes';font-family:楷体_GB2312;text-decoration:underline;text-underline:rgb(51,153,102) wave;font-size:14.0000pt;mso-font-kerning:1.0000pt;" ><o:p></o:p></span></u></p>
+					<p class="MsoNormal" style="text-indent:84.0000pt;mso-char-indent-count:8.0000;"><img width="96" height="95" src="../../img/logo.png"><span style="mso-spacerun:'yes';font-family:楷体_GB2312;font-size:28.0000pt;mso-font-kerning:1.0000pt;">&nbsp;&nbsp;&nbsp;<font face="楷体_GB2312" >高菱电梯</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><sup><span style="mso-spacerun:'yes';font-family:楷体_GB2312;font-size:28.0000pt;mso-font-kerning:1.0000pt;vertical-align:super;" ><o:p></o:p></span></sup></p>
+					<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+					<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+					<p class="MsoNormal" align=center style="text-align:center;"><span style="mso-spacerun:'yes';font-family:隶书;mso-hansi-font-family:宋体;font-size:55.0000pt;mso-font-kerning:1.0000pt;"><font face="隶书" >产</font>&nbsp;<font face="隶书" >品</font>&nbsp;<font face="隶书" >合</font>&nbsp;<font face="隶书" >格</font>&nbsp;<font face="隶书" >证</font></span><span style="mso-spacerun:'yes';font-family:隶书;mso-hansi-font-family:宋体;font-size:55.0000pt;mso-font-kerning:1.0000pt;"><o:p></o:p></span></p>
+					<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:楷体_GB2312;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+					<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+					<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+					<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p>&nbsp;</o:p></span></p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span">&nbsp;
+							<font face="宋体">使</font>&nbsp;
+							<font face="宋体">用</font>&nbsp;
+							<font face="宋体">单</font>&nbsp;
+							<font face="宋体">位</font>
+						</span>
+						<input type="text" class="border-bottom" data-bind="value:useEnterprise"/>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span">&nbsp;
+							<font face="宋体">产</font>&nbsp;
+							<font face="宋体">品</font>&nbsp;
+							<font face="宋体">名</font>&nbsp;
+							<font face="宋体">称</font>
+						</span>
+						<input type="text" class="border-bottom" data-bind="value:productName"/>
+					</p>
+					
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span">&nbsp;
+							<font face="宋体">合</font>&nbsp;
+							<font face="宋体">同</font>&nbsp;
+							<font face="宋体">编</font>&nbsp;
+							<font face="宋体">号</font>
+						</span>
+						<input type="text" class="border-bottom" data-bind="value:contractNumber"/>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span">&nbsp;
+							<font face="宋体">出</font>&nbsp;
+							<font face="宋体">厂</font>&nbsp;
+							<font face="宋体">编</font>&nbsp;
+							<font face="宋体">号</font>
+						</span>
+						<input type="text" class="border-bottom" data-bind="value:productionNumber"/>
+					</p>	
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span">&nbsp;
+							<font face="宋体">出</font>&nbsp;
+							<font face="宋体">厂</font>&nbsp;
+							<font face="宋体">日</font>&nbsp;
+							<font face="宋体">期</font>
+						</span>
+						<!--<input type="text" class="border-bottom" data-bind="value:productionDate"/>-->
+						<input readonly style="float: none;" type="text" class="border-bottom form-control workinput wicon productionDate" data-bind="value:productionDate,click:function(data, event) { jedateMenthod2(data,event,'.productionDate')} "/>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					
+					<p class="MsoNormal" style="text-align:center; border-bottom: 1px solid #000; width: 750px; margin: auto;">
+						<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:22.0000pt;mso-font-kerning:1.0000pt;">
+							<font face="楷体_GB2312" >广东高菱电梯有限公司</font>
+						</span>
+					</p>
+					
+					<p class="MsoNormal" style="text-indent:14.0000pt;mso-char-indent-count:1.0000;  margin-left: 53px;">
+						<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+							<font face="楷体_GB2312" >地址：广东省佛山市南海区狮山镇新境村曾家工业区下沙（土名）</font>&nbsp;&nbsp;&nbsp;&nbsp;
+						</span>
+						<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;"><o:p></o:p></span>
+					</p>
+					
+					<p class="MsoNormal" style="text-indent:14.0000pt;mso-char-indent-count:1.0000; margin-left: 53px;">
+						<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+							<font face="楷体_GB2312" >电话：</font>0757-86681787&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传真：0757-86681787
+						</span>
+					</p>
+					
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					
+					<p class="MsoNormal MsoNormal_p">
+						<span class="MsoNormal_p_span"><o:p>&nbsp;</o:p></span>
+					</p>
+					<p class="MsoNormal MsoNormal_p">
+						<img width="96" height="95" src="../../img/logo.png">
+					</p>
+					<p class="MsoNormal" style="text-align:center;line-height:20.0000pt;mso-line-height-rule:exactly;">
+						<span class="zYSpan">
+							<font face="楷体_GB2312" >电梯主要技术参数</font>
+						</span>
+					</p>
+					<div style="padding-left: 24px;">
+						<p class="MsoNormal" style="line-height:20.0000pt;mso-line-height-rule:exactly;">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Model&nbsp;of&nbsp;product</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Form&nbsp;of&nbsp;control</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312">产</font>
+								<font class="mr-5" face="楷体_GB2312">品</font>
+								<font class="mr-5" face="楷体_GB2312">型</font>
+								<font face="楷体_GB2312">号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:productType"/>
+							</span>
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >控</font>
+								<font class="mr-5" face="楷体_GB2312" >制</font>
+								<font class="mr-5" face="楷体_GB2312" >方</font>
+								<font face="楷体_GB2312" >式：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:controlMode"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Running&nbsp;speed</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Form&nbsp;of&nbsp;driving</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >额</font>
+								<font class="mr-5" face="楷体_GB2312" >定</font>
+								<font class="mr-5" face="楷体_GB2312" >速</font>
+								<font face="楷体_GB2312" >度：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:ratedSpeed"/>
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >驱</font>
+								<font class="mr-5" face="楷体_GB2312" >动</font>
+								<font class="mr-5" face="楷体_GB2312" >方</font>
+								<font face="楷体_GB2312" >式：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:driveMode"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Stop&nbsp;service</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Rated&nbsp;load&nbsp;capacity</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >服</font>
+								<font class="mr-5" face="楷体_GB2312" >务</font>
+								<font class="mr-5" face="楷体_GB2312" >层</font>
+								<font face="楷体_GB2312" >站：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:serviceLayer"/>
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >额</font>
+								<font class="mr-5" face="楷体_GB2312" >定</font>
+								<font class="mr-5" face="楷体_GB2312" >载</font>
+								<font face="楷体_GB2312" >重：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:ratedload"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Size&nbsp;of&nbsp;open</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Form&nbsp;of&nbsp;open</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >开</font>
+								<font class="mr-5" face="楷体_GB2312" >门</font>
+								<font class="mr-5" face="楷体_GB2312" >尺</font>
+								<font face="楷体_GB2312" >寸：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:carDoorSize"/>
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >开</font>
+								<font class="mr-5" face="楷体_GB2312" >门</font>
+								<font class="mr-5" face="楷体_GB2312" >方</font>
+								<font face="楷体_GB2312" >式：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:carDoorMode"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan" style="font-size:10.5000pt; display: inline-block; width: 343px;">Size&nbsp;of&nbsp;car</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >轿</font>
+								<font class="mr-5" face="楷体_GB2312" >厢</font>
+								<font class="mr-5" face="楷体_GB2312" >内</font>
+								<font class="mr-5" face="楷体_GB2312" >尺</font>
+								<font face="楷体_GB2312" >寸：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" style="width: 335px;" data-bind="value:carSize"/>
+						</p>
+						<p class="MsoNormal" style="text-align:center;line-height:20.0000pt;mso-line-height-rule:exactly;">
+							<span class="zYSpan">
+								<font face="楷体_GB2312">主要部件参数</font>
+							</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Controller&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Controller&nbsp; NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >电</font>
+								<font class="mr-5" face="楷体_GB2312" >柜</font>
+								<font class="mr-5" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:controllerType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >电</font>
+								<font class="mr-5" face="楷体_GB2312" >柜</font>
+								<font class="mr-5" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:controllerNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Machine&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Machine&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >主</font>
+								<font class="mr-5" face="楷体_GB2312" >机</font>
+								<font class="mr-5" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:machineType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >主</font>
+								<font class="mr-5" face="楷体_GB2312" >机</font>
+								<font class="mr-5" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:machineNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Governor&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Governor&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >限</font>
+								<font class="mr_2" face="楷体_GB2312" >速</font>
+								<font class="mr_2" face="楷体_GB2312" >器</font>
+								<font class="mr_2" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:governorType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >限</font>
+								<font class="mr_2" face="楷体_GB2312" >速</font>
+								<font class="mr_2" face="楷体_GB2312" >器</font>
+								<font class="mr_2" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:governorNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Safeties&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Safeties&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >安</font>
+								<font class="mr_2" face="楷体_GB2312" >全</font>
+								<font class="mr_2" face="楷体_GB2312" >钳</font>
+								<font class="mr_2" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" data-bind="value:safetiesType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >安</font>
+								<font class="mr_2" face="楷体_GB2312" >全</font>
+								<font class="mr_2" face="楷体_GB2312" >钳</font>
+								<font class="mr_2" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2 fontSize" data-bind="value:safetiesNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Buffer&nbsp;Type</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >缓</font>
+								<font class="mr_2" face="楷体_GB2312" >冲</font>
+								<font class="mr_2" face="楷体_GB2312" >器</font>
+								<font class="mr_2" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3 fontSize" style="width: 605px; text-align: left;" data-bind="value:bufferType"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan" style="font-size:10.5000pt;">Buffer&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >缓</font>
+								<font class="mr_2" face="楷体_GB2312" >冲</font>
+								<font class="mr_2" face="楷体_GB2312" >器</font>
+								<font class="mr_2" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2  fontSize" style="width: 605px; text-align: left;" data-bind="value:doorLockNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Door&nbsp;Lock&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Door&nbsp;Lock&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >门</font>
+								<font class="mr-5" face="楷体_GB2312" >锁</font>
+								<font class="mr-5" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3  fontSize" data-bind="value:doorLockType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr-5" face="楷体_GB2312" >门</font>
+								<font class="mr-5" face="楷体_GB2312" >锁</font>
+								<font class="mr-5" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2  fontSize" data-bind="value:bufferNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block;">Car&nbsp;Door&nbsp;Lock&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Car&nbsp;Door&nbsp;Lock&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >轿</font>
+								<font class="mr_2" face="楷体_GB2312" >门</font>
+								<font class="mr_2" face="楷体_GB2312" >锁</font>
+								<font class="mr_2" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW3  fontSize" data-bind="value:carDoorLockType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr_2" face="楷体_GB2312" >轿</font>
+								<font class="mr_2" face="楷体_GB2312" >门</font>
+								<font class="mr_2" face="楷体_GB2312" >锁</font>
+								<font class="mr_2" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom csContextW2  fontSize" data-bind="value:carDoorLockNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block; width: 357px;">Above&nbsp;Line&nbsp;Overspeed&nbsp;Protective&nbsp;Device&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Above&nbsp;Line&nbsp;Overspeed&nbsp;Protective&nbsp;Device&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >上</font>
+								<font class="mr_6" face="楷体_GB2312" >行</font>
+								<font class="mr_6" face="楷体_GB2312" >超</font>
+								<font class="mr_6" face="楷体_GB2312" >速</font>
+								<font class="mr_6" face="楷体_GB2312" >保</font>
+								<font class="mr_6" face="楷体_GB2312" >护</font>
+								<font class="mr_6" face="楷体_GB2312" >装</font>
+								<font class="mr_6" face="楷体_GB2312" >置</font>
+								<font class="mr_6" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom fontSize csContextW115" data-bind="value:overspeedDeviceType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >上</font>
+								<font class="mr_6" face="楷体_GB2312" >行</font>
+								<font class="mr_6" face="楷体_GB2312" >超</font>
+								<font class="mr_6" face="楷体_GB2312" >速</font>
+								<font class="mr_6" face="楷体_GB2312" >保</font>
+								<font class="mr_6" face="楷体_GB2312" >护</font>
+								<font class="mr_6" face="楷体_GB2312" >装</font>
+								<font class="mr_6" face="楷体_GB2312" >置</font>
+								<font class="mr_6" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom fontSize csContextW115" data-bind="value:overspeedDeviceNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block; width: 352px;">Unintended&nbsp;Car&nbsp;Movement&nbsp;Protection&nbsp;Type</span>
+							<span class="zYSpan" style="font-size:10.5000pt;">Unintended&nbsp;Car&nbsp;Movement&nbsp;Protection&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >轿</font>
+								<font class="mr_6" face="楷体_GB2312" >厢</font>
+								<font class="mr_6" face="楷体_GB2312" >意</font>
+								<font class="mr_6" face="楷体_GB2312" >外</font>
+								<font class="mr_6" face="楷体_GB2312" >移</font>
+								<font class="mr_6" face="楷体_GB2312" >动</font>
+								<font class="mr_6" face="楷体_GB2312" >保</font>
+								<font class="mr_6" face="楷体_GB2312" >护</font>
+								<font class="mr_6" face="楷体_GB2312" >装</font>
+								<font class="mr_6" face="楷体_GB2312" >置</font>
+								<font class="mr_6" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom  fontSize csContextW108" data-bind="value:collisionDeviceType"/>
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >轿</font>
+								<font class="mr_6" face="楷体_GB2312" >厢</font>
+								<font class="mr_6" face="楷体_GB2312" >意</font>
+								<font class="mr_6" face="楷体_GB2312" >外</font>
+								<font class="mr_6" face="楷体_GB2312" >移</font>
+								<font class="mr_6" face="楷体_GB2312" >动</font>
+								<font class="mr_6" face="楷体_GB2312" >保</font>
+								<font class="mr_6" face="楷体_GB2312" >护</font>
+								<font class="mr_6" face="楷体_GB2312" >装</font>
+								<font class="mr_6" face="楷体_GB2312" >置</font>
+								<font class="mr_6" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom  fontSize csContextW108" data-bind="value:collisionDeviceNumber"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan csContextW408" style="font-size:10.5000pt; display: inline-block; width: 352px;">Safety&nbsp;circuits&nbsp;Containing&nbsp;Electronic&nbsp;components&nbsp;Type</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >含</font>
+								<font class="mr_6" face="楷体_GB2312" >有</font>
+								<font class="mr_6" face="楷体_GB2312" >电</font>
+								<font class="mr_6" face="楷体_GB2312" >子</font>
+								<font class="mr_6" face="楷体_GB2312" >元</font>
+								<font class="mr_6" face="楷体_GB2312" >件</font>
+								<font class="mr_6" face="楷体_GB2312" >的</font>
+								<font class="mr_6" face="楷体_GB2312" >安</font>
+								<font class="mr_6" face="楷体_GB2312" >全</font>
+								<font class="mr_6" face="楷体_GB2312" >电</font>
+								<font class="mr_6" face="楷体_GB2312" >路</font>
+								<font class="mr_6" face="楷体_GB2312" >型</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom  fontSize" data-bind="value:safetyCircuitsType"/>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="zYSpan" style="font-size:10.5000pt;">Safety&nbsp;circuits&nbsp;Containing&nbsp;Electronic&nbsp;components&nbsp;Type&nbsp;NO.</span>
+						</p>
+						<p class="MsoNormal csContext">
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >含</font>
+								<font class="mr_6" face="楷体_GB2312" >有</font>
+								<font class="mr_6" face="楷体_GB2312" >电</font>
+								<font class="mr_6" face="楷体_GB2312" >子</font>
+								<font class="mr_6" face="楷体_GB2312" >元</font>
+								<font class="mr_6" face="楷体_GB2312" >件</font>
+								<font class="mr_6" face="楷体_GB2312" >的</font>
+								<font class="mr_6" face="楷体_GB2312" >安</font>
+								<font class="mr_6" face="楷体_GB2312" >全</font>
+								<font class="mr_6" face="楷体_GB2312" >电</font>
+								<font class="mr_6" face="楷体_GB2312" >路</font>
+								<font class="mr_6" face="楷体_GB2312" >编</font>
+								<font face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom  fontSize" data-bind="value:safetyCircuitsNumber"/>
+						</p>
+						<p class="MsoNormal" style="width: 715px; text-indent:-0.1000pt;line-height:20.0000pt;mso-line-height-rule:exactly;">
+							<span style="mso-spacerun:'yes';font-family:宋体;font-size:10.5000pt;mso-font-kerning:1.0000pt;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+								<font face="楷体_GB2312" >本产品在制造过程中，经检验符合</font>GB7588一2003《电梯制造与安装安全规范》（含1号修改单）的相关规范规定。经检验合格，准予出厂。</span>
+								<span style="mso-spacerun:'yes';font-family:楷体_GB2312;mso-hansi-font-family:华文细黑;font-size:14.0000pt;mso-font-kerning:1.0000pt;">
+									<o:p></o:p></span></p>
+						<p class="MsoNormal" style="line-height:20.0000pt;mso-line-height-rule:exactly;">
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >质</font>
+								<font class="mr_6" face="楷体_GB2312" >量</font>
+								<font class="mr_6" face="楷体_GB2312" >检</font>
+								<font class="mr_6" face="楷体_GB2312" >验</font>
+								<font class="mr_6" face="楷体_GB2312" >员：</font>
+							</span>
+							<input type="text" class="border-bottom  fontSize csContextW3" style="display: inline-block; width: 260px;" data-bind="value:inspectionMan"/>
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >检</font>
+								<font class="mr_6" face="楷体_GB2312" >验</font>
+								<font class="mr_6" face="楷体_GB2312" >专</font>
+								<font class="mr_6" face="楷体_GB2312" >用</font>
+								<font class="mr_6" face="楷体_GB2312" >章：</font>
+							</span>
+							<span class="csContextFont csContextW3 fontSize" style="display: inline-block;"></span>
+						</p>
+						<p class="MsoNormal" style="line-height:20.0000pt;mso-line-height-rule:exactly;">
+							<span class="csContextFont fontSize" >
+								<font class="mr_6" face="楷体_GB2312" >制</font>
+								<font class="mr_6" face="楷体_GB2312" >造</font>
+								<font class="mr_6" face="楷体_GB2312" >许</font>
+								<font class="mr_6" face="楷体_GB2312" >可</font>
+								<font class="mr_6" face="楷体_GB2312" >证</font>
+								<font class="mr_6" face="楷体_GB2312" >编</font>
+								<font class="mr_6" face="楷体_GB2312" >号：</font>
+							</span>
+							<input type="text" class="border-bottom  fontSize csContextW3" style="display: inline-block; width: 221px;" data-bind="value:coauthorMan"/>
+							<span class="csContextFont fontSize">
+								<font class="mr_6" face="楷体_GB2312" >有</font>
+								<font class="mr_6" face="楷体_GB2312" >效</font>
+								<font class="mr_6" face="楷体_GB2312" >期</font>
+								<font class="mr_6" face="楷体_GB2312" >至：</font>
+							</span>
+							<span style="display: inline-block;     vertical-align: bottom;">
+							<input readonly style="width: 250px; "  type="text" id="expiryDate" class="form-control workinput wicon expiryDate" data-bind="value:expiryDate,click:function(data, event) { jedateMenthod2(data,event,'.expiryDate')} "/></li>
+							</span>
+								
+						</p>
+					</div>	
+				</div>
+	  		</div>
+	  		<div id="projectProductQualifiedModule"></div>
+	  	</div>
+	  	<!-- /ko -->
+	  	
+	  		
+	  	<!-- ko if:recordBtnShow -->
+	  	<div class="tab-pane" id="projectRecord" style="border: 1px solid #ccc;border-top: 0;">
+	  		<div id="projectProductModuleWrite">
+	  			<style type="text/css">
+					#projectRecord .projectRecord td{text-align: center;}
+					#projectRecord .projectRecord > tbody > tr > td{border: 1px solid #000;}
+					#projectRecord .projectRecord {border: 1px solid #000;}
+					
+					#projectRecord .projectRecord .conclusion{line-height: 50px;font-size: 19px;}
+					#projectRecord .projectRecord .passSelectSpan{font-size: 30px;}
+					#projectRecord .mr-44{margin-right: 44px;}
+					
+					#projectRecord .edit{display: inline-block;font-size: 21px;padding-left: 0;}
+					#projectRecord .edit li {list-style-type:none; float: left;}
+					#projectRecord .edit li span{display: inline-block;min-width: 180px;}
+					
+					#projectRecord .wAll{width: 100%;}
+				</style>
+				<div>
+					<button type="button" class="btn btn-primary mr-10" data-bind="click:printprojectRecord">打印</button>
+				</div>
+				<div  style="padding: 0 30px;">
+					<div style="text-align: center; font-size: 23px;padding-top:15px;">广东高菱电梯有限公司</div>
+					<div style="text-align: center; font-size: 30px;font-weight: 900;margin: 5px 0;">电梯整机出厂检验记录表</div>
+					<div style="font-size: 18px;">记录文字编号：<input style="width: 400px;" type="text" data-bind="value:inspectionRecord"/></div>
+					<div>
+						<table style="margin-bottom: 10px;" class="table table-bordered projectRecord">
+							<tr>
+								<td>使用单位</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:useEnterprise"/></td>
+								<td>产品名称</td>
+								<td><input type="text" class="wAll" data-bind="value:productName"/></td>
+							</tr>
+							
+							<tr>
+								<td>合同编号</td>
+								<td colspan="2"><input type="text" class="wAll" data-bind="value:contractNumber"/></td>
+								<td>生产编号</td>
+								<td><input type="text" class="wAll" data-bind="value:productionNumber"/></td>
+								<td>出厂日期</td>
+								<td><input readonly  type="text" class="form-control workinput wicon productionDate"  data-bind="value:productionDate,click:function(data, event) { jedateMenthod2(data,event,'.productionDate')}"/></td>
+							</tr>
+							
+							<tr>
+								<td>产品型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:productType"/></td>
+								<td>控制模式</td>
+								<td><input type="text" class="wAll" data-bind="value:controlMode"/></td>
+							</tr>
+							
+							<tr>
+								<td>额定速度</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:ratedSpeed"/></td>
+								<td>驱动方式</td>
+								<td><input type="text" class="wAll" data-bind="value:driveMode"/></td>
+							</tr>
+							
+							<tr>
+								<td>服务层站</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:serviceLayer"/></td>
+								<td>额定载重</td>
+								<td><input type="text" class="wAll" data-bind="value:ratedload"/></td>
+							</tr>
+							
+							<tr>
+								<td>开门尺寸</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:carDoorSize"/></td>
+								<td>开门方式</td>
+								<td ><input type="text" class="wAll" data-bind="value:carDoorMode"/></td>
+							</tr>
+							
+							<tr>
+								<td>轿厢尺寸</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:carSize"/></td>
+								<td>曳引比</td>
+								<td><input type="text" class="wAll" data-bind="value:deviceRatio"/></td>
+							</tr>
+							
+							<tr>
+								<td colspan="5">主要部件及参数</td>
+								<td colspan="2">检验结论</td>
+							</tr>
+							
+							<tr>
+								<td>电柜型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:controllerType"/></td>
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="controllerConclusionCheckbox" data-bind="checkedValue:'Y',checked:controllerConclusion" id="controllerConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="controllerConclusionY">合格</label>
+									<input name="controllerConclusionCheckbox" data-bind="checkedValue:'N',checked:controllerConclusion" id="controllerConclusionN" value="N" type="radio"><label for="controllerConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.controllerType', 0) }"><span class="passSelectSpan controllerType">☑</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.controllerType', 1) }"><span  class="passSelectSpan controllerType">☑</span>不合格</span>-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>电柜编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:controllerNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td>主机型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:machineType"/></td>
+								<!--<td data-bind="html:controllerNumber">2000㎏</td>
+								<td data-bind="html:controllerNumber">0.5m/s</td>
+								<td data-bind="html:controllerNumber">2：1</td>-->
+								
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="machineConclusionCheckbox" data-bind="checkedValue:'Y',checked:machineConclusion" id="machineConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="machineConclusionY">合格</label>
+									<input name="machineConclusionCheckbox" data-bind="checkedValue:'N',checked:machineConclusion" id="machineConclusionN" value="N" type="radio"><label for="machineConclusionN">不合格</label>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>主机编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:machineNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td>限速器型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:governorType"/></td>
+								<!--<td>0.5m/s</td>
+								<td></td>
+								<td></td>-->
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="governorConclusionCheckbox" data-bind="checkedValue:'Y',checked:governorConclusion" id="governorConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="governorConclusionY">合格</label>
+									<input name="governorConclusionCheckbox" data-bind="checkedValue:'N',checked:governorConclusion" id="governorConclusionN" value="N" type="radio"><label for="governorConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.governorConclusion', 0) }"><span class="passSelectSpan governorConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.governorConclusion', 1) }"><span  class="passSelectSpan governorConclusion">□</span>不合格</span>		-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>限速器编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:governorNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td>安全钳型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:safetiesType"/></td>
+								<!--<td>0.5m/s</td>
+								<td>P+Q值</td>
+								<td>3380kg</td>-->
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="safetiesConclusionCheckbox" data-bind="checkedValue:'Y',checked:safetiesConclusion" id="safetiesConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="safetiesConclusionY">合格</label>
+									<input name="safetiesConclusionCheckbox" data-bind="checkedValue:'N',checked:safetiesConclusion" id="safetiesConclusionN" value="N" type="radio"><label for="safetiesConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.safetiesConclusion', 0) }"><span class="passSelectSpan safetiesConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.safetiesConclusion', 1) }"><span  class="passSelectSpan safetiesConclusion">□</span>不合格</span>		-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>安全钳编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:safetiesNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td>缓冲器型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:bufferType"/></td>
+								<!--<td>JHQ-C2(骄杨)</td>
+								<td>对重:</td>
+								<td>JHQ-C2(骄杨)</td>-->
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="bufferConclusionCheckbox" data-bind="checkedValue:'Y',checked:bufferConclusion" id="bufferConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="bufferConclusionY">合格</label>
+									<input name="bufferConclusionCheckbox" data-bind="checkedValue:'N',checked:bufferConclusion" id="bufferConclusionN" value="N" type="radio"><label for="bufferConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.bufferConclusion', 0) }"><span class="passSelectSpan bufferConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.bufferConclusion', 1) }"><span  class="passSelectSpan bufferConclusion">□</span>不合格</span>		-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>缓冲器编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:doorLockNumber"/></td>
+								<!--<td></td>
+								<td></td>
+								<td></td>-->
+							</tr>
+							
+							<tr>
+								<td>门锁型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:doorLockType"/></td>
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="doorLockConclusionCheckbox" data-bind="checkedValue:'Y',checked:doorLockConclusion" id="doorLockConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="doorLockConclusionY">合格</label>
+									<input name="doorLockConclusionCheckbox" data-bind="checkedValue:'N',checked:doorLockConclusion" id="doorLockConclusionN" value="N" type="radio"><label for="doorLockConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.doorLockConclusion', 0) }"><span class="passSelectSpan doorLockConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.doorLockConclusion', 1) }"><span  class="passSelectSpan doorLockConclusion">□</span>不合格</span>		-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>门锁编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:bufferNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td>上行超速保护装置型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:overspeedDeviceType"/></td>
+								<!--<td></td>
+								<td>0.5m/s</td>
+								<td></td>-->
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="overspeedDeviceConclusionCheckbox" data-bind="checkedValue:'Y',checked:overspeedDeviceConclusion" id="overspeedDeviceConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="overspeedDeviceConclusionY">合格</label>
+									<input name="overspeedDeviceConclusionCheckbox" data-bind="checkedValue:'N',checked:overspeedDeviceConclusion" id="overspeedDeviceConclusionN" value="N" type="radio"><label for="overspeedDeviceConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.overspeedDeviceConclusion', 0) }"><span class="passSelectSpan overspeedDeviceConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.overspeedDeviceConclusion', 1) }"><span  class="passSelectSpan overspeedDeviceConclusion">□</span>不合格</span>		-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>上行超速保护装置编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:overspeedDeviceNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td>轿门锁型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:carDoorLockType"/></td>
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="carDoorLockConclusionCheckbox" data-bind="checkedValue:'Y',checked:carDoorLockConclusion" id="carDoorLockConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="carDoorLockConclusionY">合格</label>
+									<input name="carDoorLockConclusionCheckbox" data-bind="checkedValue:'N',checked:carDoorLockConclusion" id="carDoorLockConclusionN" value="N" type="radio"><label for="carDoorLockConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.carDoorLockConclusion', 0) }"><span class="passSelectSpan carDoorLockConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.carDoorLockConclusion', 1) }"><span  class="passSelectSpan carDoorLockConclusion">□</span>不合格</span>		-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>轿门锁编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:carDoorLockNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td>轿厢意外移动保护装置型号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:collisionDeviceType"/></td>
+								<td rowspan="2" colspan="2" class="conclusion">
+									<input name="collisionDeviceConclusionCheckbox" data-bind="checkedValue:'Y',checked:collisionDeviceConclusion" id="collisionDeviceConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="collisionDeviceConclusionY">合格</label>
+									<input name="collisionDeviceConclusionCheckbox" data-bind="checkedValue:'N',checked:collisionDeviceConclusion" id="collisionDeviceConclusionN" value="N" type="radio"><label for="collisionDeviceConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.collisionDeviceConclusion', 0) }"><span class="passSelectSpan collisionDeviceConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.collisionDeviceConclusion', 1) }"><span  class="passSelectSpan collisionDeviceConclusion">□</span>不合格</span>		-->
+								</td>
+							</tr>
+							
+							<tr>
+								<td>轿厢意外移动保护装置编号</td>
+								<td colspan="4"><input type="text" class="wAll" data-bind="value:collisionDeviceNumber"/></td>
+							</tr>
+							
+							<tr>
+								<td colspan="7" style="height: 30px;"></td>
+							</tr>
+							
+							<tr>
+								<td colspan="7" class="conclusion" style="line-height: 30px; text-align: left;">
+									<input name="inspectionConclusionCheckbox" data-bind="checkedValue:'Y',checked:inspectionConclusion" id="inspectionConclusionY" value="Y" checked type="radio" /><label class="radioSelect" for="inspectionConclusionY">合格</label>
+									<input name="inspectionConclusionCheckbox" data-bind="checkedValue:'N',checked:inspectionConclusion" id="inspectionConclusionN" value="N" type="radio"><label for="inspectionConclusionN">不合格</label>
+									<!--<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.inspectionConclusion', 0) }"><span class="passSelectSpan inspectionConclusion">□</span>合格</span>
+									<span data-bind="click:function(data, event) { isTrueMentod('.inspectionConclusion', 1) }"><span  class="passSelectSpan inspectionConclusion">□</span>不合格</span>-->
+								</td>
+							</tr>
+						</table>
+						<ul class="edit">
+							<li>编制：<input type="text" style="width: 250px;" data-bind="value:coauthorMan"/></li>
+							<li>日期：<input readonly  style="width: 250px; float: right;" type="text" class="form-control workinput wicon coauthorDate" id="coauthorDate2" data-bind="value:coauthorDate,click:function(data, event) { jedateMenthod2(data,event,'.coauthorDate')} "/></li>
+							<li>检验员：<input type="text" style="width: 250px;" data-bind="value:inspectionMan"/></li>
+							<li>日期：<input readonly style="width: 250px; float: right;"  type="text" class="form-control workinput wicon inspectionDate" id="inspectionDate" data-bind="value:inspectionDate,click:function(data, event) { jedateMenthod2(data,event,'.inspectionDate')} "/></li>
+						</ul>
+					</div>
+				</div>
+	  		</div>
+	  		<div id="projectProductModule"></div>
+	  	</div>
+		<!-- /ko -->
+	</div>
+</div>
+
+
+

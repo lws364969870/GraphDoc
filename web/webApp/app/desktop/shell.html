@@ -1,0 +1,112 @@
+﻿<div data-bind="desktopHandler">
+	<div class="desktop-nav">
+		<div class="head-left">
+			<img src="../../img/logo.png" style="height: 90%;"/>图文档管理系统
+		</div>
+		<div class="head-right">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              	    欢迎，<span data-bind="html:loginName"></span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <!--<li><a href="#">个人信息</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="#">修改密码</a></li>
+                <li role="separator" class="divider"></li>-->
+                <!--<li><a href="javascript:;" data-bind="click:logoutMenthod">退出系统</a></li>-->
+              </ul>
+            </div>
+             |
+			<button type="button" class="btn btn-success" data-bind="click:logoutMenthod">退出系统</button>
+            <!--<button type="button" class="btn btn-success">登陆系统</button>-->
+
+            <button type="button" class="btn btn-info" data-bind="click:updatePwd">修改密码</button>
+
+            <button class="btn btn-warning" type="button" data-bind="click:gotoMessagePanel">消息</button>
+
+		</div>
+	</div>
+	<div class="desktop-body container-fluid">
+		<div class="desktop-menu" data-bind="foreach:{data:arrLists,as:'arrList'}" id="accordion">
+			<div data-bind="if: arrList.status == 'Y'">
+	            <div class="panel panel-primary leftMenu" >
+	                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-bind="attr: { 'data-target': '#' + arrList.id }"> <!--data-bind="attr: { 'data-target': '#' + arrList.id }"-->
+	                    <h4 class="panel-title" >
+	                        <span data-bind="text: arrList.title"></span>
+	                        <span class="glyphicon glyphicon-chevron-down menu-right"></span>
+	                    </h4>
+	                </div>
+	                <div  class="panel-collapse collapse in" role="tabpanel" aria-labelledby="project" data-bind="attr: { 'aria-labelledby': '#' + arrList.id,'id': arrList.id  },foreach: { data: arrList.child, as: 'arrListChild' }">
+	                    <div data-bind="if: arrListChild.status == 'Y'">    
+	                        <a href="#" class="list-group-item" data-bind="text: arrListChild.title,click:$root.gotoProjectPanel">  </a>
+	                	</div>
+	                </div>
+	            </div>
+            </div>
+		</div>
+		<div class="desktop-content row-fluid well" id="desktop-content"></div>
+	</div>
+</div>
+
+<!--<div class="panel panel-primary leftMenu">-->
+<!--<div class="panel-heading" data-toggle="collapse" data-target="#archived">--><!-- data-bind='attr: { "data-target": "#project"}'-->
+<!--<h4 class="panel-title">-->
+<!--图文档管理-->
+<!--<span class="glyphicon glyphicon-chevron-down menu-right"></span>-->
+<!--</h4>-->
+<!--</div>-->
+<!--<div id="archived" class="panel-collapse collapse" role="tabpanel" aria-labelledby="archived">-->
+
+<!--<a href="#" class="list-group-item"> 菜单22 </a>-->
+
+<!--<a href="#" class="list-group-item"> 菜单23 </a>-->
+
+<!--<a href="#" class="list-group-item"> 菜单24 </a>-->
+
+<!--<a href="#" class="list-group-item"> 菜单25 </a>-->
+
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="panel panel-primary leftMenu">-->
+<!--<div class="panel-heading" data-toggle="collapse" data-target="#report">-->
+<!--<h4 class="panel-title">-->
+<!--统计报表-->
+<!--<span class="glyphicon glyphicon-chevron-down menu-right"></span>-->
+<!--</h4>-->
+<!--</div>-->
+<!--<div id="report" class="panel-collapse collapse" role="tabpanel" aria-labelledby="report">-->
+
+<!--<a href="#" class="list-group-item"> 报表1 </a>-->
+
+<!--<a href="#" class="list-group-item"> 报表2 </a>-->
+
+<!--<a href="#" class="list-group-item"> 报表3 </a>-->
+
+<!--<a href="#" class="list-group-item"> 报表4 </a>-->
+
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="panel panel-primary leftMenu">-->
+<!--<div class="panel-heading" data-toggle="collapse" data-target="#operations">-->
+<!--<h4 class="panel-title">-->
+<!--系统运维-->
+<!--<span class="glyphicon glyphicon-chevron-down menu-right"></span>-->
+<!--</h4>-->
+<!--</div>-->
+<!--<div id="operations" class="panel-collapse collapse" role="tabpanel" aria-labelledby="operations">-->
+
+<!--<a href="#" class="list-group-item"> 用户管理 </a>-->
+
+<!--<a href="#" class="list-group-item"> 角色权限 </a>-->
+
+<!--<a href="#" class="list-group-item"> 操作日志 </a>-->
+
+<!--<a href="#" class="list-group-item"> 项目配置 </a>-->
+
+<!--<a href="#" class="list-group-item" data-bind="click:aboutBtnClick;"> 关于 </a>-->
+
+<!--</div>-->
+<!--</div> -->

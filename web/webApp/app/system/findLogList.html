@@ -1,0 +1,58 @@
+<div data-bind="findLogListHandler" class="col-sm-12">
+	<nav class="navigation">系统配置<span class="c-gray en">&gt;</span><span>操作日志</span></nav>
+	<div class="form-group">
+		<label class="queryCondition control-label">表名：</label>
+		<div class="col-sm-3">
+			<input type="text" placeholder="请输入表名" class="form-control" data-bind="value:tableName"/>
+		</div>
+		
+		<label class="queryCondition control-label">操作类型：</label>
+		<div class="col-sm-3">
+			<select class="form-control valtype" data-bind="options: typeArr, value:typeStr, optionsValue: 'textStr' , optionsText: 'valueStr',  optionsCaption: '请选择'">
+			</select>
+		</div>
+		
+		<label class="queryCondition control-label">操作人：</label>
+		<div class="col-sm-3">
+			<input type="text" placeholder="请输入操作人" class="form-control" data-bind="value:userName"/>
+		</div>
+		<button class="btn btn-success" data-bind="click:function(){$root.loadLog(1)}"> 搜索</button>
+		 <!--data-bind="click:loadLog"-->
+	</div>
+	<table class="table table-bordered table-striped table-hover">
+		<thead>
+			<tr>
+				<th class="text-center">序号</th>
+				<th class="text-center">IP</th>
+				<th class="text-center">表名</th>
+				<th class="text-center">操作类型</th>
+				<th class="text-center">日志内容</th>
+				<th class="text-center">操作人ID</th>
+				<th class="text-center">操作人</th>
+				<th class="text-center">时间</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: arrList">
+			<tr class="text-center">
+				<td data-bind="text: $index() + 1"></td>
+				<td data-bind="text: ip"></td>
+				<td data-bind="text: tableName"></td>
+				<td data-bind="text: type"></td>
+				<td data-bind="text: content"></td>
+				<td data-bind="text: userId"></td>
+				<td data-bind="text: userName"></td>
+				<td data-bind="text: logDate"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="fr" data-bind="if:isShowPage">
+	<ul class="pagination">
+	    <li><a href="#" aria-label="Previous" data-bind = "click:function(){ $root.upPage($root.minPageNum()); }"><span aria-hidden="true">&laquo;</span></a></li>
+	    <!-- ko foreach: { data: pagesArray, as: 'page' } -->
+	    	<li data-bind="click:function(){ $root.gotoPage(page); }, css:{ active: page == $root.currentPage() } "><a href="#" data-bind="text:page"></a></li>
+	    <!-- /ko -->
+	    <li><a href="#" data-bind = "click:function(){ $root.nextPage($root.maxPageNum()); }">&raquo;</a></li>
+	</ul>	
+</div>
+

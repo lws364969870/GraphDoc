@@ -1,0 +1,250 @@
+<!--
+	作者：1970496911@qq.com
+	时间：2017-10-23
+	描述：电梯整机出厂检验记录表
+-->
+<div data-bind="projectRecordHandler">
+	<style type="text/css">
+		.projectRecord td{text-align: center;}
+		.projectRecord > tbody > tr > td{border: 1px solid #000;}
+		.projectRecord {border: 1px solid #000;}
+		
+		.projectRecord .conclusion{line-height: 50px;font-size: 19px;}
+		.projectRecord .passSelectSpan{font-size: 30px;}
+		.mr-44{margin-right: 44px;}
+		
+		.edit{display: inline-block;font-size: 21px;padding-left: 0;}
+		.edit li {list-style-type:none; float: left;}
+		.edit li span{display: inline-block;min-width: 180px;}
+		
+		.wAll{width: 100%;}
+	</style>
+	<div>
+		<button type="button" class="btn btn-primary mr-10" data-bind="click:savePro">保存</button>
+	</div>
+	<div  style="padding: 0 30px;">
+		<div style="text-align: center; font-size: 23px;padding-top:15px;">广东高菱电梯有限公司</div>
+		<div style="text-align: center; font-size: 30px;font-weight: 900;margin: 5px 0;">电梯整机出厂检验记录表</div>
+		<div style="font-size: 18px;">记录文字编号：<input style="width: 400px;" type="text" data-bind="value:inspectionRecord"/></div>
+		<div>
+			<table style="margin-bottom: 10px;" class="table table-bordered projectRecord">
+				<tr>
+					<td>使用单位</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:useEnterprise"/></td>
+					<td>产品名称</td>
+					<td><input type="text" class="wAll" data-bind="value:productName"/></td>
+				</tr>
+				
+				<tr>
+					<td>合同编号</td>
+					<td colspan="2"><input type="text" class="wAll" data-bind="value:contractNumber"/></td>
+					<td>生产编号</td>
+					<td><input type="text" class="wAll" data-bind="value:productionNumber"/></td>
+					<td>出厂日期</td>
+					<td><input readonly  type="text" class="form-control workinput wicon" id="productionDate2" data-bind="value:productionDate,click:jedateMenthod"/></td>
+				</tr>
+				
+				<tr>
+					<td>产品型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:productType"/></td>
+					<td>控制模式</td>
+					<td><input type="text" class="wAll" data-bind="value:controlMode"/></td>
+				</tr>
+				
+				<tr>
+					<td>额定速度</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:ratedSpeed"/></td>
+					<td>驱动方式</td>
+					<td><input type="text" class="wAll" data-bind="value:driveMode"/></td>
+				</tr>
+				
+				<tr>
+					<td>服务层站</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:serviceLayer"/></td>
+					<td>额定载重</td>
+					<td><input type="text" class="wAll" data-bind="value:ratedload"/></td>
+				</tr>
+				
+				<tr>
+					<td>开门尺寸</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:carDoorSize"/></td>
+					<td>开门方式</td>
+					<td ><input type="text" class="wAll" data-bind="value:carDoorMode"/></td>
+				</tr>
+				
+				<tr>
+					<td>轿厢尺寸</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:carSize"/></td>
+					<td>曳引比</td>
+					<td><input type="text" class="wAll" data-bind="value:deviceRatio"/></td>
+				</tr>
+				
+				<tr>
+					<td colspan="5">主要部件及参数</td>
+					<td colspan="2">检验结论</td>
+				</tr>
+				
+				<tr>
+					<td>电柜型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:controllerType"/></td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.controllerType', 0) }"><span class="passSelectSpan controllerType" >☑</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.controllerType', 1) }"><span  class="passSelectSpan controllerType" >□</span>不合格</span>	
+					</td>
+				</tr>
+				
+				<tr>
+					<td>电柜编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:controllerNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td>主机型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:machineType"/></td>
+					<!--<td data-bind="html:controllerNumber">2000㎏</td>
+					<td data-bind="html:controllerNumber">0.5m/s</td>
+					<td data-bind="html:controllerNumber">2：1</td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.machineConclusion', 0) }"><span class="passSelectSpan machineConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.machineConclusion', 1) }"><span  class="passSelectSpan machineConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>主机编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:machineNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td>限速器型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:governorType"/></td>
+					<!--<td>0.5m/s</td>
+					<td></td>
+					<td></td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.governorConclusion', 0) }"><span class="passSelectSpan governorConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.governorConclusion', 1) }"><span  class="passSelectSpan governorConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>限速器编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:governorNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td>安全钳型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:safetiesType"/></td>
+					<!--<td>0.5m/s</td>
+					<td>P+Q值</td>
+					<td>3380kg</td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.safetiesConclusion', 0) }"><span class="passSelectSpan safetiesConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.safetiesConclusion', 1) }"><span  class="passSelectSpan safetiesConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>安全钳编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:safetiesNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td>缓冲器型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:bufferType"/></td>
+					<!--<td>JHQ-C2(骄杨)</td>
+					<td>对重:</td>
+					<td>JHQ-C2(骄杨)</td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.bufferConclusion', 0) }"><span class="passSelectSpan bufferConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.bufferConclusion', 1) }"><span  class="passSelectSpan bufferConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>缓冲器编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:doorLockNumber"/></td>
+					<!--<td></td>
+					<td></td>
+					<td></td>-->
+				</tr>
+				
+				<tr>
+					<td>门锁型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:doorLockType"/></td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.doorLockConclusion', 0) }"><span class="passSelectSpan doorLockConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.doorLockConclusion', 1) }"><span  class="passSelectSpan doorLockConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>门锁编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:bufferNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td>上行超速保护装置型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:overspeedDeviceType"/></td>
+					<!--<td></td>
+					<td>0.5m/s</td>
+					<td></td>-->
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.overspeedDeviceConclusion', 0) }"><span class="passSelectSpan overspeedDeviceConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.overspeedDeviceConclusion', 1) }"><span  class="passSelectSpan overspeedDeviceConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>上行超速保护装置编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:overspeedDeviceNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td>轿门锁型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:carDoorLockType"/></td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.carDoorLockConclusion', 0) }"><span class="passSelectSpan carDoorLockConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.carDoorLockConclusion', 1) }"><span  class="passSelectSpan carDoorLockConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>轿门锁编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:carDoorLockNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td>轿厢意外移动保护装置型号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:collisionDeviceType"/></td>
+					<td rowspan="2" colspan="2" class="conclusion">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.collisionDeviceConclusion', 0) }"><span class="passSelectSpan collisionDeviceConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.collisionDeviceConclusion', 1) }"><span  class="passSelectSpan collisionDeviceConclusion">□</span>不合格</span>		
+					</td>
+				</tr>
+				
+				<tr>
+					<td>轿厢意外移动保护装置编号</td>
+					<td colspan="4"><input type="text" class="wAll" data-bind="value:collisionDeviceNumber"/></td>
+				</tr>
+				
+				<tr>
+					<td colspan="7" style="height: 30px;"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="7" class="conclusion" style="line-height: 30px; text-align: left;">
+						<span class="mr-44" data-bind="click:function(data, event) { isTrueMentod('.inspectionConclusion', 0) }"><span class="passSelectSpan inspectionConclusion">□</span>合格</span>
+						<span data-bind="click:function(data, event) { isTrueMentod('.inspectionConclusion', 1) }"><span  class="passSelectSpan inspectionConclusion">□</span>不合格</span>
+					</td>
+				</tr>
+			</table>
+			<ul class="edit">
+				<li>编制：<input type="text" style="width: 250px;" data-bind="value:coauthorMan"/></li>
+				<li>日期：<input readonly  style="width: 250px; float: right;" type="text" class="form-control workinput wicon" id="coauthorDate2" data-bind="value:coauthorDate,click:jedateMenthod"/></li>
+				<li>检验员：<input type="text" style="width: 250px;" data-bind="value:inspectionMan"/></li>
+				<li>日期：<input readonly style="width: 250px; float: right;"  type="text" class="form-control workinput wicon" id="inspectionDate" data-bind="value:inspectionDate,click:jedateMenthod"/></li>
+			</ul>
+		</div>
+	</div>
+</div>

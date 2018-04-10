@@ -1,0 +1,57 @@
+<!--
+	作者：1970496911@qq.com
+	时间：2017-10-07
+	描述：提交审批，  同意 =审批通过  不同意 = 驳回至上一级  取消 = 关闭
+-->
+<div data-bind="projectAuditHandler">
+	<form class="form-horizontal" style="margin-top: 30px; width: 97%;" action="">
+	    <fieldset>
+		    <div class="form-group" >
+	      		<label class="col-sm-3 control-label">审批意见：</label>
+	      		<div class="col-sm-9 mb-10">
+	      			<textarea placeholder="请输入审批意见" class="form-control txtValidation" data-type="txtStr" data-value="请输入审核意见" rows="7" cols="20" data-bind="value:auditName" style="resize: none;">
+	      				
+	      				
+	      			</textarea>
+	       	 	</div>
+	       	 	<label class="col-sm-3 control-label">审核人员：</label>
+	      		<div class="col-sm-9">
+	      			<table class="table table-bordered table-striped table-hover">
+      					<thead>
+							<tr>
+								<th class="text-center"></th>
+								<th class="text-center">用户名称</th>
+								<th class="text-center">部门</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach: arrList">
+							<tr class="text-center">
+								<td><input type="checkbox" name="auditCheck"  data-bind="value:id"/></td>
+								<td data-bind="text: userName"></td>
+								<td data-bind="text: department"></td>
+							</tr>
+						</tbody>
+      				</table>
+      				<div class="fr" data-bind="if:isShowPage">
+						<ul class="pagination">
+						    <li><a href="#" aria-label="Previous" data-bind = "click:function(){ $root.upPage($root.minPageNum()); }"><span aria-hidden="true">&laquo;</span></a></li>
+						    <!-- ko foreach: { data: pagesArray, as: 'page' } -->
+						    	<li data-bind="click:function(){ $root.gotoPage(page); }, css:{ active: page == $root.currentPage() } "><a href="#" data-bind="text:page"></a></li>
+						    <!-- /ko -->
+						    <li><a href="#" data-bind = "click:function(){ $root.nextPage($root.maxPageNum()); }">&raquo;</a></li>
+						</ul>	
+					</div>
+	       	 	</div>
+		    </div>
+	    </fieldset>
+	</form>
+	  <div class="col-sm-3"></div>
+	  
+	  <div class="col-sm-8" style="padding-left: 0;">
+	  	<button class="btn btn-primary mr-10" data-bind="click:consentExamine">同意</button>
+	  	<span data-bind="if: type">
+	  		<button class="btn btn-primary mr-10" data-bind="click:turnDown">不同意</button>
+	    </span>
+	    <button class="btn btn-primary" data-bind="click:returnProject">取消</button>
+	  </div>
+</div>
